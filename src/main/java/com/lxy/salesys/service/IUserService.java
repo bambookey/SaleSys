@@ -6,5 +6,5 @@ public interface IUserService {
 	
 	public User userLogin(User u);
 	
-	public User getUserByUserName(String username);
+	public User getUserByUserName(String userName);
 }

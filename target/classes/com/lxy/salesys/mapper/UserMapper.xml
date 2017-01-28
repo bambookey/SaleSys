@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.salesys.dao.UserDao">
+	<resultMap type="com.lxy.salesys.pojo.User" id="User">
+		<result property="Id" column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="UserName" column="UserName" />
+		<result property="Password" column="Password" />
+		<result property="NickName" column="NickName" />
+		<result property="Balance" column="Balance" />
+		<result property="UserType" column="UserType" />
+	</resultMap>
+	<select id="getUserByUserName" resultMap="User">
+		SELECT * FROM tb_user WHERE UserName=#{userName}
+	</select>
+</mapper>
