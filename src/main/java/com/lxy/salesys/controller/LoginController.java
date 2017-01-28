@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lxy.salesys.enums.ServiceStatus;
 import com.lxy.salesys.pojo.User;
 import com.lxy.salesys.service.IUserService;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.salesys.dao.GoodDao">
+	<resultMap type="com.lxy.salesys.pojo.Good" id="Good">
+		<result property="id" column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="title" column="Title" />
+		<result property="summary" column="Summary" />
+		<result property="text" column="Text" />
+		<result property="imgPath" column="ImgPath" />
+		<result property="prize" column="Prize" />
+	</resultMap>
+	<insert id="insertGood" parameterType="com.lxy.salesys.pojo.Good">
+		INSERT INTO tb_good(Id, Title, Summary, Text, ImgPath, Prize)
+		VALUES(#{id}, #{title}, #{summary}, #{text}, #{imgPath}, #{prize})
+	</insert>
+</mapper>

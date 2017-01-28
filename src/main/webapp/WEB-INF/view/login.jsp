@@ -12,7 +12,7 @@
 	src="resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#btn_login").click(function() {
+		$("#btnLogin").click(function() {
 			var userId = $("#userId").val();
 			var userPassword = $("#userPassword").val();
 			$.ajax({
@@ -59,7 +59,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
-				<input id="btn_login" type="button" class="btn btn-primary"
+				<input id="btnLogin" type="button" class="btn btn-primary"
 					value="登录"><span id="msgBox"></span>
 			</div>
 		</div>
