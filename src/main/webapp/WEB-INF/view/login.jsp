@@ -24,7 +24,13 @@
 				},
 				dataType : 'json',
 				success : function(data) {
-					console.log(data);
+					var userType = data.userType;
+					var status = data.status;
+					if(status == 0) { // login success
+						window.location.href = "login";
+					} else {
+						$("#msgBox").html("用户名或密码错误");
+					}
 				},
 				error : function() {
 					console.log('error');
@@ -54,7 +60,7 @@
 			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
 				<input id="btn_login" type="button" class="btn btn-primary"
-					value="登录">
+					value="登录"><span id="msgBox"></span>
 			</div>
 		</div>
 	</form>

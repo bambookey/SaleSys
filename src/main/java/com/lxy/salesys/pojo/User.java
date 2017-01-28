@@ -8,6 +8,13 @@ public class User {
 	private Double balance;
 	private Integer userType;
 
+	public User(){}
+	
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

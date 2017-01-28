@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxy.salesys.enums.ServiceStatus;
 import com.lxy.salesys.pojo.User;
 import com.lxy.salesys.service.IUserService;
 
@@ -36,6 +37,16 @@ public class LoginController {
 //	modelAndView.addObject("status", status);
 //	return modelAndView;
 	
+	/**
+	 * 
+	 * @Title: userLogin 
+	 * @Description: 用户登录
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return JSONObject    返回类型 status:0:存在用户且登录成功；-1:用户不存在或密码错误
+	 * @throws
+	 */
 	@RequestMapping(value="/userLogin", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject userLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -44,10 +55,11 @@ public class LoginController {
 		int userType = 0;
 		String userName = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");
+		User loginUser = new User(userName, userPassword);
 		User user = null;
 		
 		try {
-			user = userService.getUserByUserName(userName);
+			user = userService.userLogin(loginUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("Error: LoginController->userLogin->getUserByUserName");
@@ -56,7 +68,6 @@ public class LoginController {
 		if(user == null) {
 			status = -1;
 		} else {
-			status = 1;
 			userType = user.getUserType();
 		}
 		ret.put("status", status);
