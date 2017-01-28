@@ -31,6 +31,10 @@
 				},
 				dataType : 'json',
 				success : function(data) {
+					var status = data.status;
+					if(status == 0) {
+						alert("INSERT SUCCESS");
+					}
 					console.log(data);
 				},
 				error : function() {

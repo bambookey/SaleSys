@@ -28,6 +28,16 @@ public class GoodController {
 		return "goodInsert";
 	}
 	
+	/**
+	 * 
+	 * @Title: insertGood 
+	 * @Description: 插入货物，返回受影响的行数
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return JSONObject    返回类型 
+	 * @throws
+	 */
 	@RequestMapping(value="/insertGood", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject insertGood(HttpServletRequest request, HttpServletResponse response) {
@@ -41,9 +51,9 @@ public class GoodController {
 		Good good = new Good(title, summary, text, img, prize);
 		
 		int status = -1;
-		int id = -1;
+		int rowAffected = -1;
 		try {
-			id = goodService.insertGood(good);
+			rowAffected = goodService.insertGood(good);
 			status = 0;
 		} catch (Exception e) {
 			logger.error("ERROR: GoodController->insertGood->insertGood");
@@ -51,7 +61,7 @@ public class GoodController {
 		}
 		
 		ret.put("status", status);
-		ret.put("id", id);
+		ret.put("rowAffected", rowAffected);
 		return ret;
 	}
 }
