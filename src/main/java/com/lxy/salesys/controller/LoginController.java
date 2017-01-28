@@ -44,16 +44,23 @@ public class LoginController {
 		int userType = 0;
 		String userName = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");
-		User user = userService.getUserByUserName(userName);
+		User user = null;
+		
+		try {
+			user = userService.getUserByUserName(userName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error: LoginController->userLogin->getUserByUserName");
+		}
 		
 		if(user == null) {
 			status = -1;
 		} else {
 			status = 1;
-			
+			userType = user.getUserType();
 		}
 		ret.put("status", status);
-		ret.put("status", "www");
+		ret.put("userType", userType);
 		return ret;
 	}
 }
