@@ -28,13 +28,7 @@ public class LoginController {
 		return "login";
 	}
 	
-//	ModelAndView modelAndView = new ModelAndView();
-//	int status = 0;
-//	String viewName = "login";
-//	
-//	modelAndView.setViewName(viewName);
-//	modelAndView.addObject("status", status);
-//	return modelAndView;
+
 	
 	/**
 	 * 

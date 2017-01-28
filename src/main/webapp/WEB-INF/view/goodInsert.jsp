@@ -86,8 +86,7 @@
 			<div class="col-sm-10">
 				<input id="btnInsert" type="button" class="btn btn-primary"
 					value="添加商品">
-				<input id="btnInsert" type="button" class="btn btn-primary"
-					value="商品列表">
+				<a class="btn btn-primary" href="goodList">商品列表</a>
 			</div>
 		</div>
 	</form>

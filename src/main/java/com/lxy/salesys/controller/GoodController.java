@@ -1,5 +1,7 @@
 package com.lxy.salesys.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,11 +12,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Good;
 import com.lxy.salesys.service.IGoodService;
 
+/**
+ * 
+ * @ClassName: GoodController 
+ * @Description: 商品控制器
+ * @author A18ccms a18ccms_gmail_com 
+ * @date 2017年1月28日 下午10:30:17 
+ *
+ */
 @Controller
 public class GoodController {
 	
@@ -63,5 +74,46 @@ public class GoodController {
 		ret.put("status", status);
 		ret.put("rowAffected", rowAffected);
 		return ret;
+	}
+	
+
+	/**
+	 * 
+	 * @Title: selectAllGoods 
+	 * @Description: 查找出所有的商品
+	 * @param @return    设定文件 
+	 * @return ModelAndView    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/goodList")
+	public ModelAndView selectAllGoods() {
+		ModelAndView modelAndView = new ModelAndView();
+		ArrayList<Good> goodList = new ArrayList<Good>();
+		int status = 0;
+		try {
+			goodList = goodService.selectAllGoods();
+		} catch (Exception e) {
+			logger.error("ERROR: GoodController->selectAllGoods->selectAllGoods");
+			e.printStackTrace();
+		}
+		
+		
+		modelAndView.setViewName("goodList");
+		modelAndView.addObject("status", status);
+		modelAndView.addObject("goodList", goodList);
+		return modelAndView;
+	}
+	
+	@RequestMapping("/goodDetail")
+	public ModelAndView goodDetail(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView();
+		int id = Integer.parseInt(request.getParameter("id"));
+		int status = 0;
+		Good good = goodService.selectGoodById(id);
+		
+		modelAndView.setViewName("goodDetail");
+		modelAndView.addObject("status", status);
+		modelAndView.addObject("good", good);
+		return modelAndView;
 	}
 }

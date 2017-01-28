@@ -1,5 +1,7 @@
 package com.lxy.salesys.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,14 @@ public class GoodServiceImpl implements IGoodService{
 	
 	public int insertGood(Good good) {
 		return goodDao.insertGood(good);
+	}
+
+	public ArrayList<Good> selectAllGoods() {
+		return goodDao.selectAllGoods();
+	}
+
+	public Good selectGoodById(int id) {
+		return goodDao.selectGoodById(id);
 	}
 
 }

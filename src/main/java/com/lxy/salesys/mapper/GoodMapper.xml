@@ -8,9 +8,18 @@
 		<result property="text" column="Text" />
 		<result property="imgPath" column="ImgPath" />
 		<result property="prize" column="Prize" />
+		<result property="isAvailable" column="IsAvailable" />
 	</resultMap>
 	<insert id="insertGood" parameterType="com.lxy.salesys.pojo.Good">
 		INSERT INTO tb_good(Id, Title, Summary, Text, ImgPath, Prize)
 		VALUES(#{id}, #{title}, #{summary}, #{text}, #{imgPath}, #{prize})
 	</insert>
+	<select id="selectAllGoods" resultMap="Good">
+		SELECT * FROM tb_good
+		ORDER BY Id DESC
+	</select>
+	<select id="selectGoodById" resultMap="Good">
+		SELECT * FROM tb_good
+		WHERE Id=#{id}
+	</select>
 </mapper>

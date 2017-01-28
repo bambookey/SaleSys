@@ -7,8 +7,11 @@ public class Good {
 	private String text;
 	private String imgPath;
 	private Double prize;
+	private Boolean isAvailable;
 
-	public Good() {}
+	public Good() {
+	}
+
 	public Good(String title, String summary, String text, String imgPath, Double prize) {
 		this.title = title;
 		this.summary = summary;
@@ -16,6 +19,7 @@ public class Good {
 		this.imgPath = imgPath;
 		this.prize = prize;
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -62,5 +66,13 @@ public class Good {
 
 	public void setPrize(Double prize) {
 		this.prize = prize;
+	}
+
+	public Boolean getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(Boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 }
