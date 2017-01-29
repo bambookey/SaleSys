@@ -7,11 +7,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="../resources/bootstrap/css/bootstrap.min.css">
+
 <script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../resources/js/ajaxfileupload.js"></script>
 <script type="text/javascript"
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(function() {
+	$(window).on('load', function() {
 		$("#btnInsert").click(function() {
 			var title = $("#iptTitle").val();
 			var summary = $("#iptSummary").val();
@@ -20,7 +22,7 @@
 			var prize = $("#iptPrize").val();
 
 			$.ajax({
-				url : 'insertGood',
+				url : '../B/insertGood',
 				type : 'POST',
 				data : {
 					title : title,
@@ -42,6 +44,27 @@
 				}
 			})
 		});
+
+		$("#iptImg").change(function() {
+			ajaxFileUpload();
+		});
+		
+		function ajaxFileUpload(){
+			$.ajaxFileUpload({
+				//处理文件上传操作的服务器端地址(可以传参数,已亲测可用)  
+				url : '../fileUpload',
+				fileElementId : 'iptImg', //文件选择框的id属性  
+				dataType : 'text', //服务器返回的格式,可以是json或xml等  
+				success : function(data) { //服务器响应成功时的处理函数  
+					var imgPath = data;
+					console.log(data);
+					$("#picView").html("<img style='width:200px; height:200px;' src=../upload/"+imgPath+">");
+				},
+				error : function() { //服务器响应失败时的处理函数  
+					console.log("error")
+				}
+			});
+		}
 	});
 </script>
 </head>
@@ -70,7 +93,8 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">上传图片</label>
 			<div class="col-sm-10">
-				<input id="iptImg" type="file" class="file">
+				<input id="iptImg" type="file" name="file" style="display: inline;">
+				<span id="picView"></span>
 			</div>
 		</div>
 		<div class="form-group">
@@ -83,7 +107,8 @@
 			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
 				<input id="btnInsert" type="button" class="btn btn-primary"
-					value="添加商品"> <a class="btn btn-primary" href="goodList">商品列表</a>
+					value="添加商品">
+				<div id="result"></div>
 			</div>
 		</div>
 	</form>
