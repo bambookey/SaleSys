@@ -62,6 +62,7 @@ public class LoginController {
 		} else {
 			userType = user.getUserType();
 			request.getSession().setAttribute("NickName", user.getNickName());
+			request.getSession().setAttribute("UserId", user.getId());
 		}
 		ret.put("status", status);
 		ret.put("userType", userType);
@@ -70,7 +71,8 @@ public class LoginController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().setAttribute("NickName", null);
+		request.getSession().removeAttribute("NickName");
+		request.getSession().removeAttribute("UserId");
 		return "login";
 	}
 }

@@ -180,4 +180,6 @@ public class GoodController {
 		modelAndView.setViewName("C/trolley");
 		return modelAndView;
 	}
+	
+	
 }

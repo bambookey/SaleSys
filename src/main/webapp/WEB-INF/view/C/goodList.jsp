@@ -11,6 +11,28 @@
 <script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".btnTrollery").click(function(){
+		var gid = $(this).attr("gid");
+		console.log(gid);
+		$.ajax({
+			url : '../C/insertTrolley',
+			type : 'POST',
+			data : {
+				goodId : gid
+			},
+			dataType : 'json',
+			success : function(data) {
+				
+			},
+			error : function() {
+				console.log('error');
+			}
+		})
+	});
+});
+</script>
 </head>
 <body>
 	<%@include file="../Component/headerC.jsp"%>
@@ -21,7 +43,6 @@
 				<th>名称</th>
 				<th>摘要</th>
 				<th>价格（元）</th>
-				<th>可用</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -32,9 +53,8 @@
 					<td><c:out value="${good.title}"></c:out></td>
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>
-					<td><c:out value="${good.isAvailable}"></c:out></td>
-					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详细信息／修改</a>
-					<a class="btn btn-danger" href="">删除</a></td>
+					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详情</a>
+					<a class="btn btn-primary btnTrollery" gid="${good.id}" }>加入购物车</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

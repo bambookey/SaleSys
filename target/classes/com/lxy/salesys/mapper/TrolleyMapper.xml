@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.salesys.dao.TrolleyDao">
+	<resultMap type="com.lxy.salesys.pojo.Trolley" id="Trolley">
+		<result property="id" column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="userId" column="UserId" />
+		<result property="goodId" column="GoodId" />
+		<result property="status" column="Status" />
+		<result property="insertDatetime" column="InsertDatetime" />
+	</resultMap>
+
+	<select id="getTrolleyByUserId" resultMap="Trolley">
+		SELECT * FROM tb_trolley 
+		WHERE UserId=#{userId} AND Status=0
+	</select>
+	<insert id="insertTrolley" parameterType="com.lxy.salesys.pojo.Trolley">
+		INSERT INTO tb_trolley(Id, UserId, GoodId, Status, InsertDatetime)
+		VALUES(#{id}, #{userId}, #{goodId}, #{status}, #{insertDatetime})
+	</insert>
+</mapper>
