@@ -5,8 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="../resources/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"
+	src="../resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	<%@include file="../Component/headerC.jsp"%>
 </body>
 </html>

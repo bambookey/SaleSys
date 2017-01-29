@@ -13,7 +13,7 @@
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%@include file="../Component/headerB.jsp"%>
+	<%@include file="../Component/headerC.jsp"%>
 	<table class="table table-hover">
 		<thead>
 			<tr>

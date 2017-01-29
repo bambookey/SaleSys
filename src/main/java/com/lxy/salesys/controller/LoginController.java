@@ -2,6 +2,7 @@ package com.lxy.salesys.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +28,6 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
-	
-
 	
 	/**
 	 * 
@@ -62,9 +61,16 @@ public class LoginController {
 			status = -1;
 		} else {
 			userType = user.getUserType();
+			request.getSession().setAttribute("NickName", user.getNickName());
 		}
 		ret.put("status", status);
 		ret.put("userType", userType);
 		return ret;
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		request.getSession().setAttribute("NickName", null);
+		return "login";
 	}
 }

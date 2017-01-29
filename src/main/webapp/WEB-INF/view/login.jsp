@@ -27,10 +27,10 @@
 					var userType = data.userType;
 					var status = data.status;
 					if(status == 0) { // login success
-						if(status == 0) { //seller
-							window.location.href = "goodList";
-						} else if(status == 1) { //buyer
-							window.location.href = "login";
+						if(userType == 0) { //seller
+							window.location.href = "B/goodList";
+						} else if(userType == 1) { //buyer
+							window.location.href = "C/goodList";
 						}
 					} else {
 						$("#msgBox").html("用户名或密码错误");

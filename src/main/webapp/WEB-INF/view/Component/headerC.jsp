@@ -13,12 +13,13 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">产品一览</a></li>
-				<li><a href="#">购物车</a></li>
+				<li class="active"><a href="../C/goodList">产品一览</a></li>
+				<li><a href="../C/trolley">购物车</a></li>
 				<li><a href="#">已购买</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+				<li><a><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("NickName")%></a></li>
+				<li><a href="../logout"><span class="glyphicon glyphicon-log-in"></span>
 						登出</a></li>
 			</ul>
 		</div>

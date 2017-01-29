@@ -34,10 +34,19 @@ public class GoodController {
 	@Autowired
 	IGoodService goodService;
 	
-	@RequestMapping("/goodInsert")
-	public String goodInsert() {
+	/**
+	 * 
+	 * @Title: goodInsertB 
+	 * @Description: 【跳转】B端插入商品
+	 * @param @return    设定文件 
+	 * @return String    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/B/goodInsert")
+	public String goodInsertB() {
 		return "B/goodInsert";
 	}
+	
 	
 	/**
 	 * 
@@ -49,7 +58,7 @@ public class GoodController {
 	 * @return JSONObject    返回类型 
 	 * @throws
 	 */
-	@RequestMapping(value="/insertGood", method = RequestMethod.POST)
+	@RequestMapping(value="/B/insertGood", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject insertGood(HttpServletRequest request, HttpServletResponse response) {
 		JSONObject ret = new JSONObject();
@@ -85,8 +94,8 @@ public class GoodController {
 	 * @return ModelAndView    返回类型 
 	 * @throws
 	 */
-	@RequestMapping("/goodList")
-	public ModelAndView selectAllGoods() {
+	@RequestMapping("/B/goodList")
+	public ModelAndView goodListB() {
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList<Good> goodList = new ArrayList<Good>();
 		int status = 0;
@@ -104,7 +113,44 @@ public class GoodController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/goodDetail")
+	/**
+	 * 
+	 * @Title: selectAllGoods 
+	 * @Description: 查找出所有的商品
+	 * @param @return    设定文件 
+	 * @return ModelAndView    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/C/goodList")
+	public ModelAndView goodListC() {
+		ModelAndView modelAndView = new ModelAndView();
+		ArrayList<Good> goodList = new ArrayList<Good>();
+		int status = 0;
+		try {
+			goodList = goodService.selectAllGoods();
+		} catch (Exception e) {
+			logger.error("ERROR: GoodController->selectAllGoods->selectAllGoods");
+			e.printStackTrace();
+		}
+		
+		
+		modelAndView.setViewName("C/goodList");
+		modelAndView.addObject("status", status);
+		modelAndView.addObject("goodList", goodList);
+		return modelAndView;
+	}
+	
+	/**
+	 * 
+	 * @Title: goodDetail 
+	 * @Description: B端商品详细信息
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return ModelAndView    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/B/goodDetail")
 	public ModelAndView goodDetail(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -114,6 +160,24 @@ public class GoodController {
 		modelAndView.setViewName("B/goodDetail");
 		modelAndView.addObject("status", status);
 		modelAndView.addObject("good", good);
+		return modelAndView;
+	}
+	
+	/**
+	 * 
+	 * @Title: trolley 
+	 * @Description: C端购物车页面
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return ModelAndView    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/C/trolley")
+	public ModelAndView trolley(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("C/trolley");
 		return modelAndView;
 	}
 }
