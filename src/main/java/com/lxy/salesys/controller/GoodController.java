@@ -163,23 +163,6 @@ public class GoodController {
 		return modelAndView;
 	}
 	
-	/**
-	 * 
-	 * @Title: trolley 
-	 * @Description: C端购物车页面
-	 * @param @param request
-	 * @param @param response
-	 * @param @return    设定文件 
-	 * @return ModelAndView    返回类型 
-	 * @throws
-	 */
-	@RequestMapping("/C/trolley")
-	public ModelAndView trolley(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		modelAndView.setViewName("C/trolley");
-		return modelAndView;
-	}
 	
 	
 }

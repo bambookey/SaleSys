@@ -9,7 +9,7 @@
 		<result property="insertDatetime" column="InsertDatetime" />
 	</resultMap>
 
-	<select id="getTrolleyByUserId" resultMap="Trolley">
+	<select id="getTrolleysByUserId" resultMap="Trolley">
 		SELECT * FROM tb_trolley 
 		WHERE UserId=#{userId} AND Status=0
 	</select>

@@ -1,6 +1,5 @@
 package com.lxy.salesys.controller;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Trolley;
@@ -49,14 +49,29 @@ public class TrolleyController {
 	
 	/**
 	 * 
-	 * @Title: getTrolleysByUserId 
-	 * @Description: 获取用户下所有购物车记录
-	 * @param @param id
+	 * @Title: trolley 
+	 * @Description: C端购物车
+	 * @param @param request
+	 * @param @param response
 	 * @param @return    设定文件 
-	 * @return ArrayList<Trolley>    返回类型 
+	 * @return ModelAndView    返回类型 
 	 * @throws
 	 */
-	public ArrayList<Trolley> getTrolleysByUserId(int id) {
-		return trolleyService.getTrolleysByUserId(id);
+	@RequestMapping("/C/trolley")
+	public ModelAndView trolley(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Integer userId = null;
+		try {
+			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
+		} catch (Exception e) {
+			logger.error("ERROR: TrolleyController->trolley->parseInt");
+			e.printStackTrace();
+		}
+		ArrayList<Trolley> trolleys = trolleyService.getTrolleysByUserId(userId);
+		
+		modelAndView.setViewName("C/trolley");
+		modelAndView.addObject("trolleys", trolleys);
+		return modelAndView;
 	}
 }
