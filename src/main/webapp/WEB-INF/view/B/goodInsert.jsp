@@ -18,7 +18,7 @@
 			var title = $("#iptTitle").val();
 			var summary = $("#iptSummary").val();
 			var text = $("#iptText").val();
-			var img = $("#iptImg").val();
+			var img = $("#iptImgPath").val();
 			var prize = $("#iptPrize").val();
 
 			$.ajax({
@@ -57,8 +57,13 @@
 				dataType : 'text', //服务器返回的格式,可以是json或xml等  
 				success : function(data) { //服务器响应成功时的处理函数  
 					var imgPath = data;
-					console.log(data);
+					$("#iptImgPath").val(imgPath);
+					console.log(imgPath)
 					$("#picView").html("<img style='width:200px; height:200px;' src=../upload/"+imgPath+">");
+					//
+					$("#iptImg").change(function() {
+						ajaxFileUpload();
+					});
 				},
 				error : function() { //服务器响应失败时的处理函数  
 					console.log("error")
@@ -93,6 +98,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">上传图片</label>
 			<div class="col-sm-10">
+				<input id="iptImgPath" type="hidden">
 				<input id="iptImg" type="file" name="file" style="display: inline;">
 				<span id="picView"></span>
 			</div>
