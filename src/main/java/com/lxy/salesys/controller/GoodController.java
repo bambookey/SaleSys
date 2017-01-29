@@ -36,7 +36,7 @@ public class GoodController {
 	
 	@RequestMapping("/goodInsert")
 	public String goodInsert() {
-		return "goodInsert";
+		return "B/goodInsert";
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class GoodController {
 		}
 		
 		
-		modelAndView.setViewName("goodList");
+		modelAndView.setViewName("B/goodList");
 		modelAndView.addObject("status", status);
 		modelAndView.addObject("goodList", goodList);
 		return modelAndView;
@@ -111,7 +111,7 @@ public class GoodController {
 		int status = 0;
 		Good good = goodService.selectGoodById(id);
 		
-		modelAndView.setViewName("goodDetail");
+		modelAndView.setViewName("B/goodDetail");
 		modelAndView.addObject("status", status);
 		modelAndView.addObject("good", good);
 		return modelAndView;

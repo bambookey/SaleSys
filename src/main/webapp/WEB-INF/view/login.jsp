@@ -27,7 +27,11 @@
 					var userType = data.userType;
 					var status = data.status;
 					if(status == 0) { // login success
-						window.location.href = "login";
+						if(status == 0) { //seller
+							window.location.href = "goodList";
+						} else if(status == 1) { //buyer
+							window.location.href = "login";
+						}
 					} else {
 						$("#msgBox").html("用户名或密码错误");
 					}

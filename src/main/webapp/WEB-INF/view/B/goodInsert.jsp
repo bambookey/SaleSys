@@ -18,7 +18,7 @@
 			var text = $("#iptText").val();
 			var img = $("#iptImg").val();
 			var prize = $("#iptPrize").val();
-			
+
 			$.ajax({
 				url : 'insertGood',
 				type : 'POST',
@@ -32,7 +32,7 @@
 				dataType : 'json',
 				success : function(data) {
 					var status = data.status;
-					if(status == 0) {
+					if (status == 0) {
 						alert("INSERT SUCCESS");
 					}
 					console.log(data);
@@ -46,12 +46,12 @@
 </script>
 </head>
 <body>
+	<%@include file="../Component/headerB.jsp"%>
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品标题</label>
 			<div class="col-sm-10">
-				<input class="form-control" id="iptTitle" type="text"
-					placeholder="">
+				<input class="form-control" id="iptTitle" type="text" placeholder="">
 			</div>
 		</div>
 		<div class="form-group">
@@ -64,8 +64,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">介绍正文</label>
 			<div class="col-sm-10">
-				<input class="form-control" id="iptText" type="text"
-					placeholder="">
+				<input class="form-control" id="iptText" type="text" placeholder="">
 			</div>
 		</div>
 		<div class="form-group">
@@ -77,16 +76,14 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品价格</label>
 			<div class="col-sm-10">
-				<input class="form-control" id="iptPrize" type="text"
-					placeholder="">
+				<input class="form-control" id="iptPrize" type="text" placeholder="">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
 				<input id="btnInsert" type="button" class="btn btn-primary"
-					value="添加商品">
-				<a class="btn btn-primary" href="goodList">商品列表</a>
+					value="添加商品"> <a class="btn btn-primary" href="goodList">商品列表</a>
 			</div>
 		</div>
 	</form>

@@ -12,6 +12,7 @@
 	src="resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<%@include file="../Component/headerB.jsp"%>
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品名称</label>
