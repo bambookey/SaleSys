@@ -49,7 +49,7 @@ $(function(){
 		<tbody>
 			<c:forEach items="${goodList}" var="good">
 				<tr>
-					<td></td>
+					<td><img style="width:60px; height:60px;" alt="${good.title}" src="${good.imgPath}"></td>
 					<td><c:out value="${good.title}"></c:out></td>
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>

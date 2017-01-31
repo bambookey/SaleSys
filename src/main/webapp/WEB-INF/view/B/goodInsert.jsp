@@ -59,7 +59,7 @@
 					var imgPath = data;
 					$("#iptImgPath").val(imgPath);
 					console.log(imgPath)
-					$("#picView").html("<img style='width:200px; height:200px;' src=../upload/"+imgPath+">");
+					$("#picView").html("<img style='width:200px; height:200px;' src="+imgPath+">");
 					//
 					$("#iptImg").change(function() {
 						ajaxFileUpload();

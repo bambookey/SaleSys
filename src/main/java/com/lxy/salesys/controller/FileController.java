@@ -24,7 +24,7 @@ public class FileController {
 	@ResponseBody
 	public String fileUpload(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request, ModelMap model) {  
 		String path = request.getSession().getServletContext().getRealPath("upload");
-		String filePath = fileService.fileUpload(file, path);
+		String filePath = "../upload/" + fileService.fileUpload(file, path);
 		return filePath;
 	}
 }

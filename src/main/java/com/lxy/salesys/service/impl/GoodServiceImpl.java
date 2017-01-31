@@ -2,6 +2,8 @@ package com.lxy.salesys.service.impl;
 
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class GoodServiceImpl implements IGoodService{
 	GoodDao goodDao;
 	
 	public int insertGood(Good good) {
+		System.out.println(good.getTitle());
 		return goodDao.insertGood(good);
 	}
 
