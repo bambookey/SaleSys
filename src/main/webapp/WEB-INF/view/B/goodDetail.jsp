@@ -13,6 +13,35 @@
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(window).on('load', function() {
+	$("#btnUpdate").click(function() {
+		var id = $("#iptId").val();
+		var title = $("#iptTitle").val();
+		var summary = $("#iptSummary").val();
+		var text = $("#iptText").val();
+		var img = $("#iptImgPath").val();
+		var prize = $("#iptPrize").val();
+		console.log(id)
+		$.ajax({
+			url : '../B/updateGood',
+			type : 'POST',
+			data : {
+				id : id,
+				title : title,
+				summary : summary,
+				text : text,
+				img : img,
+				prize : prize
+			},
+			dataType : 'json',
+			success : function(data) {
+				console.log(data);
+			},
+			error : function() {
+				console.log('error');
+			}
+		})
+	});
+	
 	$("#iptImg").change(function() {
 		ajaxFileUpload();
 	});
@@ -43,24 +72,25 @@ $(window).on('load', function() {
 <body>
 	<%@include file="../Component/headerB.jsp"%>
 	<form class="form-horizontal" role="form">
+		<input type="hidden" id="iptId" value="${good.id}">
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品名称</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
+				<input type="text" class="form-control" id="iptTitle"
 					value="${good.title}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品摘要</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
+				<input type="text" class="form-control" id="iptSummary"
 					value="${good.summary}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">详细内容</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
+				<input type="text" class="form-control" id="iptText"
 					value="${good.text}">
 			</div>
 		</div>
@@ -82,6 +112,13 @@ $(window).on('load', function() {
 				<input id="iptImgPath" type="hidden">
 				<input id="iptImg" type="file" name="file" style="display: inline;">
 				<span id="picView"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">商品价格</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="iptPrize"
+					value="${good.prize}">
 			</div>
 		</div>
 		<div class="form-group">

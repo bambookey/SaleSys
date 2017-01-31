@@ -22,4 +22,16 @@
 		SELECT * FROM tb_good
 		WHERE Id=#{id}
 	</select>
+	<update id="updateGoodById" parameterType="com.lxy.salesys.pojo.Good">
+		UPDATE tb_good
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title!=null">Title=#{title},</if>
+			<if test="summary!=null">Summary=#{summary},</if>
+			<if test="text!=null">Text=#{text},</if>
+			<if test="imgPath!=null">ImgPath=#{imgPath},</if>
+			<if test="prize!=null">Prize=#{prize},</if>
+			<if test="isAvailable!=null">IsAvailable=#{isAvailable},</if>
+		</trim>
+		WHERE Id=#{id}
+	</update>
 </mapper>

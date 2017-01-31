@@ -35,4 +35,15 @@ public interface IGoodService {
 	 * @throws
 	 */
 	public Good selectGoodById(int id);
+	
+	/**
+	 * 
+	 * @Title: updateGoodByI 
+	 * @Description: 根据id更新商品
+	 * @param @param good
+	 * @param @return    设定文件 
+	 * @return int    返回类型 
+	 * @throws
+	 */
+	public int updateGoodById(Good good);
 }

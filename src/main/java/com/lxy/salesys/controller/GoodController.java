@@ -163,6 +163,41 @@ public class GoodController {
 		return modelAndView;
 	}
 	
-	
-	
+	/**
+	 * 
+	 * @Title: updateGoodById 
+	 * @Description: 更新产品
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return JSONObject    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/B/updateGood")
+	@ResponseBody
+	public JSONObject updateGoodById(HttpServletRequest request, HttpServletResponse response) {
+		JSONObject ret = new JSONObject();
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String summary = request.getParameter("summary");
+		String text = request.getParameter("text");
+		String img = request.getParameter("img");
+		Double prize = Double.parseDouble(request.getParameter("prize"));
+		
+		Good good = new Good(id, title, summary, text, img, prize);
+		
+		int status = -1;
+		int rowAffected = -1;
+		try {
+			rowAffected = goodService.updateGoodById(good);
+			status = 0;
+		} catch (Exception e) {
+			logger.error("ERROR: GoodController->updateGoodById->updateGoodById");
+			e.printStackTrace();
+		}
+		
+		ret.put("status", status);
+		ret.put("rowAffected", rowAffected);
+		return ret;
+	}
 }

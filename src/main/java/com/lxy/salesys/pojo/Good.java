@@ -11,8 +11,17 @@ public class Good {
 
 	public Good() {
 	}
-
+	
 	public Good(String title, String summary, String text, String imgPath, Double prize) {
+		this.title = title;
+		this.summary = summary;
+		this.text = text;
+		this.imgPath = imgPath;
+		this.prize = prize;
+	}
+	
+	public Good(Integer id, String title, String summary, String text, String imgPath, Double prize) {
+		this.id = id;
 		this.title = title;
 		this.summary = summary;
 		this.text = text;
