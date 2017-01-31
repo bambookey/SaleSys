@@ -56,6 +56,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th>照片</th>
 				<th>商品名称</th>
 				<th>单价</th>
 				<th>选择数量</th>
@@ -65,6 +66,7 @@
 		<tbody>
 			<c:forEach items="${trolleys}" var="trolley">
 				<tr>
+					<td><img style="width:60px; height:60px;" alt="${trolley.title}" src="${trolley.imgPath}"></td>
 					<td><a href="../C/goodDetail?id=${trolley.id}"><c:out value="${trolley.title}"></c:out></a></td>
 					<td><c:out value="${trolley.prize}"></c:out></td>
 					<td>

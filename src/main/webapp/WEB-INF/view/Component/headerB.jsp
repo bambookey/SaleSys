@@ -5,6 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+$(function () {
+    $(".faq-tabbable").find("li").each(function () {
+        var a = $(this).find("a:first")[0];
+        console.log(location.pathname)
+        if ($(a).attr("href") === location.pathname) {
+            $(this).addClass("active");
+        } else {
+            $(this).removeClass("active");
+        }
+    });
+})
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -13,9 +26,9 @@
 			<a class="navbar-brand" href="#">SaleSys[B端]</a>
 		</div>
 		<div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="../B/goodList">货物清单</a></li>
-				<li><a href="../B/goodInsert">添加商品</a></li>
+			<ul class="nav navbar-nav faq-tabbable">
+				<li class="active"><a href="/SaleSys/B/goodList">货物清单</a></li>
+				<li><a href="/SaleSys/B/goodInsert">添加商品</a></li>
 				<li><a href="#">已售商品</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

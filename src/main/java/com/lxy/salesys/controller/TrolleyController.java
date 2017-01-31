@@ -77,10 +77,14 @@ public class TrolleyController {
 		ArrayList<Trolley> trolleys = trolleyService.getTrolleysByUserId(userId);
 		JSONObject trolleyJson = new JSONObject();
 		ArrayList<Integer> goodIds = new ArrayList<Integer>();
-		for(Trolley trolley : trolleys) {
-			goodIds.add(trolley.getGoodId());
+		ArrayList<Good> trolleyGoods = new ArrayList<Good>();
+		
+		if(trolleys.size() != 0) {
+			for(Trolley trolley : trolleys) {
+				goodIds.add(trolley.getGoodId());
+			}
+			trolleyGoods = goodService.selectGoodsByIds(goodIds);
 		}
-		ArrayList<Good> trolleyGoods = goodService.selectGoodsByIds(goodIds);
 		
 		modelAndView.setViewName("C/trolley");
 		modelAndView.addObject("trolleys", trolleyGoods);
