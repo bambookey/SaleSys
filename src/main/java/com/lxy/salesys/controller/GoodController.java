@@ -151,13 +151,36 @@ public class GoodController {
 	 * @throws
 	 */
 	@RequestMapping("/B/goodDetail")
-	public ModelAndView goodDetail(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView goodDetailB(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
 		int id = Integer.parseInt(request.getParameter("id"));
 		int status = 0;
 		Good good = goodService.selectGoodById(id);
 		
 		modelAndView.setViewName("B/goodDetail");
+		modelAndView.addObject("status", status);
+		modelAndView.addObject("good", good);
+		return modelAndView;
+	}
+	
+	/**
+	 * 
+	 * @Title: goodDetail 
+	 * @Description: C端商品详细信息
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return ModelAndView    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/C/goodDetail")
+	public ModelAndView goodDetailC(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView();
+		int id = Integer.parseInt(request.getParameter("id"));
+		int status = 0;
+		Good good = goodService.selectGoodById(id);
+		
+		modelAndView.setViewName("C/goodDetail");
 		modelAndView.addObject("status", status);
 		modelAndView.addObject("good", good);
 		return modelAndView;

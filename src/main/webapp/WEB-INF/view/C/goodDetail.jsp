@@ -10,53 +10,71 @@
 <script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".btnTrollery").click(function(){
+		var gid = $(this).attr("gid");
+		console.log(gid);
+		$.ajax({
+			url : '../C/insertTrolley',
+			type : 'POST',
+			data : {
+				goodId : gid
+			},
+			dataType : 'json',
+			success : function(data) {
+				
+			},
+			error : function() {
+				console.log('error');
+			}
+		})
+	});
+});
+</script>
 </head>
 <body>
 	<%@include file="../Component/headerC.jsp"%>
-	<form class="form-horizontal" role="form">
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">展示图片</label>
+			<div class="col-sm-10">
+				<div id="picView">
+					<img style="width:200px; height:200px;" alt="${good.title}" src="${good.imgPath}">
+				</div>
+			</div>
+		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品名称</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.title}">
+				<span>${good.title}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">商品单价</label>
+			<div class="col-sm-10">
+				<span>${good.prize}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品摘要</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.summary}">
+			<span>${good.summary}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">详细内容</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.text}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">图片路径</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.imgPath}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">是否可用</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.isAvailable}">
+			<span>${good.text}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
-				<input id="btnUpdate" type="button" class="btn btn-primary"
-					value="更新">
+				<a class="btn btn-primary btnTrollery" gid="${good.id}" }>加入购物车</a>
 			</div>
 		</div>
-	</form>
+	</div>
 	
 </body>
 </html>

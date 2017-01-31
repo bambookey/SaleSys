@@ -13,7 +13,7 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="../C/goodList">产品一览</a></li>
+				<li class="active"><a href="../C/goodList">商品一览</a></li>
 				<li><a href="../C/trolley">购物车</a></li>
 				<li><a href="#">已购买</a></li>
 			</ul>

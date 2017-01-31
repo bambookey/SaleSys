@@ -15,8 +15,8 @@
 		<div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="../B/goodList">货物清单</a></li>
-				<li><a href="../B/goodInsert">添加产品</a></li>
-				<li><a href="#">已售产品</a></li>
+				<li><a href="../B/goodInsert">添加商品</a></li>
+				<li><a href="#">已售商品</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				
