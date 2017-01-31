@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxy.salesys.pojo.Good;
 import com.lxy.salesys.pojo.Trolley;
+import com.lxy.salesys.service.IGoodService;
 import com.lxy.salesys.service.ITrolleyService;
 
 @Controller
@@ -26,6 +28,9 @@ public class TrolleyController {
 	
 	@Autowired
 	ITrolleyService trolleyService;
+	
+	@Autowired
+	IGoodService goodService;
 	
 	@RequestMapping(value="/C/insertTrolley", method = RequestMethod.POST)
 	@ResponseBody
@@ -68,10 +73,17 @@ public class TrolleyController {
 			logger.error("ERROR: TrolleyController->trolley->parseInt");
 			e.printStackTrace();
 		}
+		
 		ArrayList<Trolley> trolleys = trolleyService.getTrolleysByUserId(userId);
+		JSONObject trolleyJson = new JSONObject();
+		ArrayList<Integer> goodIds = new ArrayList<Integer>();
+		for(Trolley trolley : trolleys) {
+			goodIds.add(trolley.getGoodId());
+		}
+		ArrayList<Good> trolleyGoods = goodService.selectGoodsByIds(goodIds);
 		
 		modelAndView.setViewName("C/trolley");
-		modelAndView.addObject("trolleys", trolleys);
+		modelAndView.addObject("trolleys", trolleyGoods);
 		return modelAndView;
 	}
 }

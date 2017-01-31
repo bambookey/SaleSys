@@ -38,6 +38,17 @@ public interface IGoodService {
 	
 	/**
 	 * 
+	 * @Title: selectGoodsByIds 
+	 * @Description: 根据Id集合批量返回多个商品
+	 * @param @param goodIds
+	 * @param @return    设定文件 
+	 * @return ArrayList<Good>    返回类型 
+	 * @throws
+	 */
+	public ArrayList<Good> selectGoodsByIds(ArrayList<Integer> goodIds);
+	
+	/**
+	 * 
 	 * @Title: updateGoodByI 
 	 * @Description: 根据id更新商品
 	 * @param @param good

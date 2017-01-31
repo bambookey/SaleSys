@@ -22,6 +22,13 @@
 		SELECT * FROM tb_good
 		WHERE Id=#{id}
 	</select>
+	<select id="selectGoodsByIds" resultMap="Good">
+		SELECT * FROM tb_good
+    	WHERE Id IN 
+	    <foreach collection="list" item="goodId" open="(" close=")" separator=",">
+	    	#{goodId}
+	    </foreach>
+	</select>
 	<update id="updateGoodById" parameterType="com.lxy.salesys.pojo.Good">
 		UPDATE tb_good
 		<trim prefix="SET" suffixOverrides=",">

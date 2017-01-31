@@ -65,16 +65,16 @@
 		<tbody>
 			<c:forEach items="${trolleys}" var="trolley">
 				<tr>
-					<td><c:out value="${trolley.goodId}"></c:out></td>
-					<td></td>
+					<td><a href="../C/goodDetail?id=${trolley.id}"><c:out value="${trolley.title}"></c:out></a></td>
+					<td><c:out value="${trolley.prize}"></c:out></td>
 					<td>
 						<div class="col-md-3">
 	                        <div class="form-group form-group-options">
-	                            <div id="${trolley.goodId}" class="input-group input-group-option quantity-wrapper">
+	                            <div id="${trolley.id}" class="input-group input-group-option quantity-wrapper">
 	                                <span  class="input-group-addon input-group-addon-remove quantity-remove btn">
 	                                    <span class="glyphicon glyphicon-minus"></span>
 	                                </span>
-	                                <input  id="${trolley.goodId}inp" type="text" value="1" name="option[]"
+	                                <input  id="${trolley.id}inp" type="text" value="1" name="option[]"
 	                                 style="width:50px; text-align:center;" class="form-control quantity-count" placeholder="1">
 	                                <span class="input-group-addon input-group-addon-remove quantity-add btn">
 	                                    <span class="glyphicon glyphicon-plus"></span>

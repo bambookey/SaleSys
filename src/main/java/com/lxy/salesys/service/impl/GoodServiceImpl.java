@@ -42,4 +42,8 @@ public class GoodServiceImpl implements IGoodService{
 		return goodDao.updateGoodById(good);
 	}
 
+	public ArrayList<Good> selectGoodsByIds(ArrayList<Integer> goodIds) {
+		return goodDao.selectGoodsByIds(goodIds);
+	}
+
 }
