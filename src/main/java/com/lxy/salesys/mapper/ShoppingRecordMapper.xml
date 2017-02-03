@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxy.salesys.dao.ShoppingRecordDao">
+	<resultMap type="com.lxy.salesys.pojo.ShoppingRecord" id="ShoppingRecord">
+		<result property="id" column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="userId" column="UserId" />
+		<result property="goodId" column="GoodId" />
+		<result property="goodAmount" column="GoodAmount" />
+		<result property="totalMoney" column="TotalMoney" />
+		<result property="insertDatetime" column="InsertDatetime" />
+	</resultMap>
+
+	<insert id="insertShoppingRecords" parameterType="com.lxy.salesys.pojo.ShoppingRecord">
+		INSERT INTO tb_shoppingRecord(Id, UserId, GoodId, GoodAmount, TotalMoney, InsertDatetime)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator="," >
+	        (#{item.id}, #{item.userId}, #{item.goodId}, #{item.goodAmount}, #{item.totalMoney}, #{item.insertDatetime})
+	    </foreach>  
+		
+	</insert>
+</mapper>

@@ -1,6 +1,7 @@
 package com.lxy.salesys.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +48,7 @@ public interface GoodDao {
 	 * @return ArrayList<Good>    返回类型 
 	 * @throws
 	 */
-	public ArrayList<Good> selectGoodsByIds(ArrayList<Integer> goodIds);
+	public ArrayList<Good> selectGoodsByIds(List<Integer> goodIds);
 	/**
 	 * 
 	 * @Title: updateGoodById 

@@ -1,6 +1,8 @@
 package com.lxy.salesys.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.lxy.salesys.pojo.Good;
 
@@ -45,7 +47,18 @@ public interface IGoodService {
 	 * @return ArrayList<Good>    返回类型 
 	 * @throws
 	 */
-	public ArrayList<Good> selectGoodsByIds(ArrayList<Integer> goodIds);
+	public ArrayList<Good> selectGoodsByIds(List<Integer> list);
+	
+	/**
+	 * 
+	 * @Title: selectGoodsMapByIds 
+	 * @Description: 根据Id集合批量返回多个商品的map
+	 * @param @param list
+	 * @param @return    设定文件 
+	 * @return HashMap<Integer,Good>    返回类型 
+	 * @throws
+	 */
+	public HashMap<Integer, Good> selectGoodsMapByIds(List<Integer> list);
 	
 	/**
 	 * 

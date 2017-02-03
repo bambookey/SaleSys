@@ -1,8 +1,8 @@
 package com.lxy.salesys.service.impl;
 
 import java.util.ArrayList;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +42,17 @@ public class GoodServiceImpl implements IGoodService{
 		return goodDao.updateGoodById(good);
 	}
 
-	public ArrayList<Good> selectGoodsByIds(ArrayList<Integer> goodIds) {
+	public ArrayList<Good> selectGoodsByIds(List<Integer> goodIds) {
 		return goodDao.selectGoodsByIds(goodIds);
+	}
+
+	public HashMap<Integer, Good> selectGoodsMapByIds(List<Integer> goodIds) {
+		ArrayList<Good> goods = goodDao.selectGoodsByIds(goodIds);
+		HashMap<Integer, Good> ret = new HashMap<Integer, Good>();
+		for(Good g : goods) {
+			ret.put(g.getId(), g);
+		}
+		return ret;
 	}
 
 }
