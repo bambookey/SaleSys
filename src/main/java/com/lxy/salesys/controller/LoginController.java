@@ -47,7 +47,6 @@ public class LoginController {
 		int userType = 0;
 		String userName = request.getParameter("userId");
 		String userPassword = MD5.GetMD5Code(request.getParameter("userPassword"));
-		System.out.println(userPassword);
 		User loginUser = new User(userName, userPassword);
 		User user = null;
 		

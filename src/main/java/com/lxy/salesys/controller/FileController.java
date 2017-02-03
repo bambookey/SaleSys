@@ -17,14 +17,36 @@ import com.lxy.salesys.service.IFileService;
 @Controller
 public class FileController {
 	
+	private static final int GOOD_IMG_SIZE_MAX = 1024 * 1024;
+	
 	@Autowired
 	IFileService fileService;
 	
+	/**
+	 * 
+	 * @Title: fileUpload 
+	 * @Description: 上传图片
+	 * @param @param file
+	 * @param @param request
+	 * @param @param model
+	 * @param @return    设定文件 
+	 * @return String    返回类型 
+	 * @throws
+	 */
 	@RequestMapping(value="/fileUpload", method = RequestMethod.POST, consumes = "multipart/form-data")
 	@ResponseBody
 	public String fileUpload(@RequestParam(value = "file", required = true) MultipartFile file, HttpServletRequest request, ModelMap model) {  
+		JSONObject ret = new JSONObject();
 		String path = request.getSession().getServletContext().getRealPath("upload");
-		String filePath = "../upload/" + fileService.fileUpload(file, path);
-		return filePath;
+		String filePath = "";
+		int status = 0;
+		if(GOOD_IMG_SIZE_MAX >= file.getSize()) {
+			filePath = "../upload/" + fileService.fileUpload(file, path);
+		} else {
+			status = 1;
+		}
+		ret.put("status", status);
+		ret.put("filePath", filePath);
+		return ret.toJSONString();
 	}
 }

@@ -47,20 +47,27 @@ $(window).on('load', function() {
 	});
 	
 	function ajaxFileUpload(){
+		$("#fileUploadMsg").html("");
 		$.ajaxFileUpload({
-			//处理文件上传操作的服务器端地址(可以传参数,已亲测可用)  
 			url : '../fileUpload',
-			fileElementId : 'iptImg', //文件选择框的id属性  
-			dataType : 'text', //服务器返回的格式,可以是json或xml等  
-			success : function(data) { //服务器响应成功时的处理函数  
-				var imgPath = data;
-				$("#iptImgPath").val(imgPath);
-				console.log(imgPath)
-				$("#picView").html("<img style='width:200px; height:200px;' src="+imgPath+">");
-				//
+			fileElementId : 'iptImg',
+			dataType : 'text', 
+			success : function(data) {
+				var result = eval("(" + data + ")");
+				var status = result.status;
+				var imgPath = result.filePath;
+				
+				if(status == 0) {
+					$("#iptImgPath").val(imgPath);
+					$("#picView").html("<img style='width:200px; height:200px;' src="+imgPath+">");
+				} else {
+					$("#fileUploadMsg").html("图片上传大小超过最高限制，请上传小于1M的图片");
+				}
+
 				$("#iptImg").change(function() {
 					ajaxFileUpload();
 				});
+				
 			},
 			error : function() { //服务器响应失败时的处理函数  
 				console.log("error")
@@ -109,9 +116,9 @@ $(window).on('load', function() {
 					value="${good.imgPath}">
 			</div> --%>
 			<div class="col-sm-10">
-				<input id="iptImgPath" type="hidden">
+				<input id="iptImgPath" type="hidden" value="${good.imgPath}">
 				<input id="iptImg" type="file" name="file" style="display: inline;">
-				<span id="picView"></span>
+				<span id="fileUploadMsg" style="color:#F00;"></span>
 			</div>
 		</div>
 		<div class="form-group">
