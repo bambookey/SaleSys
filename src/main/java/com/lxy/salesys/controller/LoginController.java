@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.User;
 import com.lxy.salesys.service.IUserService;
+import com.lxy.salesys.utils.MD5;
 
 @Controller
 public class LoginController {
@@ -45,7 +46,8 @@ public class LoginController {
 		int status = 0;
 		int userType = 0;
 		String userName = request.getParameter("userId");
-		String userPassword = request.getParameter("userPassword");
+		String userPassword = MD5.GetMD5Code(request.getParameter("userPassword"));
+		System.out.println(userPassword);
 		User loginUser = new User(userName, userPassword);
 		User user = null;
 		

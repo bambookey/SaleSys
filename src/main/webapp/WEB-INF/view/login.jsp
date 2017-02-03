@@ -8,13 +8,14 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="resources/js/md5.js"></script>
 <script type="text/javascript"
 	src="resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#btnLogin").click(function() {
 			var userId = $("#userId").val();
-			var userPassword = $("#userPassword").val();
+			var userPassword = hex_md5($("#userPassword").val());
 			$.ajax({
 				url : 'userLogin',
 				type : 'POST',

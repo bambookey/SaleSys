@@ -84,7 +84,7 @@
 		$("#btnTrolleySubmit").click(function(){
 			submitTrolley();
 		});
-		
+
 		function submitTrolley() {
 			console.log(goodCnts);
 			console.log(goodIds);
