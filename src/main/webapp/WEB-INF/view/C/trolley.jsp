@@ -88,7 +88,10 @@
 		function submitTrolley() {
 			console.log(goodCnts);
 			console.log(goodIds);
-			
+			if(goodIds.length == 0) {
+				alert("壕先选定商品哦");
+				return false;
+			}
 			$.ajax({
 				url : '../C/insertShoppingRecords',
 				type : 'POST',
@@ -98,7 +101,12 @@
 				},
 				dataType : 'json',
 				success : function(data) {
-					console.log(data)
+					var status = data.status;
+					switch (status) {
+						case 0: alert("土豪继续剁手啊");break;
+						case 1: alert("想一想，不充钱你会变得更强吗？");break;
+						case 2: alert("赶快查bug");break;
+					}
 				},
 				error : function() {
 					console.log('error');

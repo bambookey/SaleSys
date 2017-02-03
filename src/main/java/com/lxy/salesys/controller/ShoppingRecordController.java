@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Good;
 import com.lxy.salesys.pojo.ShoppingRecord;
+import com.lxy.salesys.pojo.User;
 import com.lxy.salesys.service.IGoodService;
 import com.lxy.salesys.service.IShoppingRecordService;
+import com.lxy.salesys.service.IUserService;
 
 @Controller
 public class ShoppingRecordController {
@@ -33,6 +35,9 @@ public class ShoppingRecordController {
 	
 	@Autowired
 	IGoodService goodService;
+	
+	@Autowired
+	IUserService userService;
 	
 	/**
 	 * 
@@ -56,15 +61,30 @@ public class ShoppingRecordController {
 		ArrayList<ShoppingRecord> shoppingRecords = new ArrayList<ShoppingRecord>();
 		HashMap<Integer, Good> goods = new HashMap<Integer, Good>();
 		Integer userId = null;
+		String userName = null;
 		Timestamp insertDatetime = new Timestamp(System.currentTimeMillis());
+		/**
+		 * status: 0-正常支付， 1-余额不足， 2-代码异常
+		 */
+		int status = 0;
+		User user = null;
+		Double userBalance = 0.0;
 		Double totalMoney = 0.0;
-		goods = goodService.selectGoodsMapByIds(Arrays.asList(goodIds));
 		
+		try {
+			goods = goodService.selectGoodsMapByIds(Arrays.asList(goodIds));
+		} catch (Exception e) {
+			logger.error("ERROR: ShoppingRecordController->insertShoppingRecords->selectGoodsMapByIds");
+			e.printStackTrace();
+		}
 		
 		try {
 			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
+			userName =  request.getSession().getAttribute("UserName").toString();
+			user = userService.getUserByUserName(userName);
+			userBalance = user.getBalance();
 		} catch (Exception e) {
-			logger.error("ERROR: ShoppingRecordController->insertShoppingRecords->parseInt");
+			logger.error("ERROR: ShoppingRecordController->insertShoppingRecords");
 			e.printStackTrace();
 		}
 		
@@ -76,18 +96,26 @@ public class ShoppingRecordController {
 				int gid = goodIds[i];
 				Good g = goods.get(gid);
 				double prize = g.getPrize();
-				ShoppingRecord shoppingRecord = new ShoppingRecord(userId, gid, goodCnts[i], prize * goodCnts[i], insertDatetime);
+				double curMoney = prize * goodCnts[i];
+				ShoppingRecord shoppingRecord = new ShoppingRecord(userId, gid, goodCnts[i], curMoney, insertDatetime);
 				shoppingRecords.add(shoppingRecord);
+				totalMoney += curMoney;
 			}
 		}
 		
-		try {
-			shoppingRecordService.insertShoppingRecords(shoppingRecords);
-		} catch (Exception e) {
-			logger.error("ERROR: ShoppingRecordController->insertShoppingRecords->insertShoppingRecords");
-			e.printStackTrace();
+		if(totalMoney <= userBalance) {
+			try {
+				shoppingRecordService.insertShoppingRecords(shoppingRecords);
+			} catch (Exception e) {
+				logger.error("ERROR: ShoppingRecordController->insertShoppingRecords->insertShoppingRecords");
+				e.printStackTrace();
+			}
+		} else {
+			status = 1;
 		}
-		ret.put("aaa", "aa");
+		
+		
+		ret.put("status", status);
 		return ret;
 	}
 }
