@@ -34,7 +34,7 @@ $(window).on('load', function() {
 			},
 			dataType : 'json',
 			success : function(data) {
-				console.log(data);
+				alert("更新成功");
 			},
 			error : function() {
 				console.log('error');
@@ -140,6 +140,7 @@ $(window).on('load', function() {
 			<div class="col-sm-10">
 				<input id="btnUpdate" type="button" class="btn btn-primary"
 					value="更新">
+				<a class="btn btn-primary" href="/SaleSys/B/goodList">&lt&lt返回货物清单</a>
 			</div>
 		</div>
 	</form>
