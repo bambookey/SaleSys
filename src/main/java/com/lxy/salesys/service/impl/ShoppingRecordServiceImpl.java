@@ -26,4 +26,8 @@ public class ShoppingRecordServiceImpl implements IShoppingRecordService{
 	public int insertShoppingRecords(ArrayList<ShoppingRecord> shoppingRecords) {
 		return shoppingRecordDao.insertShoppingRecords(shoppingRecords);
 	}
+
+	public ArrayList<ShoppingRecord> selectShoppingRecordsByUserId(Integer userId) {
+		return shoppingRecordDao.selectShoppingRecordsByUserId(userId);
+	}
 }

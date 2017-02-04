@@ -125,7 +125,7 @@
 				<th>选择</th>
 				<th>照片</th>
 				<th>商品名称</th>
-				<th>单价</th>
+				<th>单价(元)</th>
 				<th>选择数量</th>
 			</tr>
 		</thead>
@@ -162,6 +162,7 @@
 	</table>
 	<div>合计: ¥<span id="totalMoney">0</span></div>
 	<input type="hidden" value="0">
-	<input class="btn btn-primary" id="btnTrolleySubmit" value="提交订单">
+	<a class="btn btn-primary" id="btnTrolleySubmit">提交订单</a>
+	<a class="btn btn-primary" href="/SaleSys/C/goodList">&lt&lt返回商品列表</a>
 </body>
 </html>

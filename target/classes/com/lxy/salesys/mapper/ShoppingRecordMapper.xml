@@ -15,7 +15,12 @@
 		VALUES
 		<foreach collection="list" item="item" index="index" separator="," >
 	        (#{item.id}, #{item.userId}, #{item.goodId}, #{item.goodAmount}, #{item.totalMoney}, #{item.insertDatetime})
-	    </foreach>  
-		
+	    </foreach>
 	</insert>
+	
+	<select id="selectShoppingRecordsByUserId" resultMap="ShoppingRecord">
+		SELECT * FROM tb_shoppingRecord
+		WHERE UserId=#{userId}
+		ORDER BY InsertDatetime DESC
+	</select>
 </mapper>

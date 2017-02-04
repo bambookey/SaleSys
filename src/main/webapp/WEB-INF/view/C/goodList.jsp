@@ -14,22 +14,25 @@
 <script type="text/javascript">
 $(function(){
 	$(".btnTrollery").click(function(){
-		var gid = $(this).attr("gid");
-		console.log(gid);
-		$.ajax({
-			url : '../C/insertTrolley',
-			type : 'POST',
-			data : {
-				goodId : gid
-			},
-			dataType : 'json',
-			success : function(data) {
-				
-			},
-			error : function() {
-				console.log('error');
-			}
-		})
+		var gname = $(this).attr("gname");
+		if(confirm("是否要添加" +gname+ "至购物车？")) {
+			var gid = $(this).attr("gid");
+			console.log(gid);
+			$.ajax({
+				url : '../C/insertTrolley',
+				type : 'POST',
+				data : {
+					goodId : gid
+				},
+				dataType : 'json',
+				success : function(data) {
+					alert("添加成功，可在购物车中查看")
+				},
+				error : function() {
+					console.log('error');
+				}
+			})
+		}
 	});
 });
 </script>
@@ -54,7 +57,7 @@ $(function(){
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详情</a>
-					<a class="btn btn-primary btnTrollery" gid="${good.id}" }>加入购物车</a></td>
+					<a class="btn btn-primary btnTrollery" gid="${good.id}" gname="${good.title}">加入购物车</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

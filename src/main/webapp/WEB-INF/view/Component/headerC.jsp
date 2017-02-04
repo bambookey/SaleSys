@@ -28,7 +28,7 @@ $(function () {
 			<ul class="nav navbar-nav faq-tabbable">
 				<li class="active"><a href="/SaleSys/C/goodList">商品一览</a></li>
 				<li><a href="/SaleSys/C/trolley">购物车</a></li>
-				<li><a href="#">已购买</a></li>
+				<li><a href="/SaleSys/C/shoppingRecord">已购买</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a><span class="glyphicon glyphicon-user"></span> <%=session.getAttribute("NickName")%></a></li>

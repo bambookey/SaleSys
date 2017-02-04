@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Good;
@@ -24,6 +25,7 @@ import com.lxy.salesys.pojo.User;
 import com.lxy.salesys.service.IGoodService;
 import com.lxy.salesys.service.IShoppingRecordService;
 import com.lxy.salesys.service.IUserService;
+import com.lxy.salesys.vo.ShoppingRecordVO;
 
 @Controller
 public class ShoppingRecordController {
@@ -38,6 +40,65 @@ public class ShoppingRecordController {
 	
 	@Autowired
 	IUserService userService;
+	
+	
+	/**
+	 * 
+	 * @Title: shoppingRecord 
+	 * @Description: 消费记录页，跳转
+	 * @param @return    设定文件 
+	 * @return String    返回类型 
+	 * @throws
+	 */
+	@RequestMapping("/C/shoppingRecord")
+	public ModelAndView shoppingRecord(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView modelAndView = new ModelAndView();
+		ArrayList<ShoppingRecordVO> shoppingRecordVOList = new ArrayList<ShoppingRecordVO>();
+		ArrayList<ShoppingRecord> shoppingRecordList = new ArrayList<ShoppingRecord>();
+		ArrayList<Integer> goodIds = new ArrayList<Integer>();
+		HashMap<Integer, Good> goods = new HashMap<Integer, Good>();
+		Integer userId = null;
+		Double totalMoney = 0.0;
+		
+		try {
+			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
+		} catch (Exception e) {
+			logger.error("ERROR: ShoppingRecordController->shoppingRecord->parseInt");
+			e.printStackTrace();
+		}
+		
+		shoppingRecordList = shoppingRecordService.selectShoppingRecordsByUserId(userId);
+		
+		if(shoppingRecordList != null && shoppingRecordList.size() != 0) {
+			for(ShoppingRecord s : shoppingRecordList) {
+				goodIds.add(s.getGoodId());
+			}
+			
+			goods = goodService.selectGoodsMapByIds(goodIds);
+			
+			for(ShoppingRecord s : shoppingRecordList) {
+				Good good = goods.get(s.getGoodId());
+				if(good != null) {
+					Integer goodId = good.getId();
+					String goodName = good.getTitle();
+					String imgPath = good.getImgPath();
+					Double totalPrize = s.getTotalMoney();
+					Integer goodCnt = s.getGoodAmount();
+					Double goodPrize = totalPrize / goodCnt;
+					Timestamp insertDatetime = s.getInsertDatetime();
+					ShoppingRecordVO shoppingRecordVO = new ShoppingRecordVO(goodId, goodName, imgPath, goodPrize, totalPrize, goodCnt, insertDatetime);
+					shoppingRecordVOList.add(shoppingRecordVO);
+					
+					totalMoney += totalPrize;
+				}
+			}
+		}
+		
+		modelAndView.addObject("shoppingRecordVOList", shoppingRecordVOList);
+		modelAndView.addObject("totalMoney", totalMoney);
+		modelAndView.setViewName("C/shoppingRecord");
+		return modelAndView;
+	}
 	
 	/**
 	 * 

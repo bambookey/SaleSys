@@ -19,4 +19,15 @@ public interface ShoppingRecordDao {
 	 * @throws
 	 */
 	public int insertShoppingRecords(ArrayList<ShoppingRecord> shoppingRecords);
+	
+	/**
+	 * 
+	 * @Title: selectShoppingRecordsByUserId 
+	 * @Description: 根据用户ID提取用户消费记录，按时间从近到远排序
+	 * @param @param userId
+	 * @param @return    设定文件 
+	 * @return ArrayList<ShoppingRecord>    返回类型 
+	 * @throws
+	 */
+	public ArrayList<ShoppingRecord> selectShoppingRecordsByUserId(Integer userId);
 }
