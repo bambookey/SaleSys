@@ -26,7 +26,7 @@ $(function(){
 				},
 				dataType : 'json',
 				success : function(data) {
-					alert("添加成功，可在购物车中查看")
+					alert("添加成功，记得去购物车结账哦");
 				},
 				error : function() {
 					console.log('error');

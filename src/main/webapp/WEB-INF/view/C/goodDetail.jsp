@@ -13,22 +13,25 @@
 <script type="text/javascript">
 $(function(){
 	$(".btnTrollery").click(function(){
-		var gid = $(this).attr("gid");
-		console.log(gid);
-		$.ajax({
-			url : '../C/insertTrolley',
-			type : 'POST',
-			data : {
-				goodId : gid
-			},
-			dataType : 'json',
-			success : function(data) {
-				
-			},
-			error : function() {
-				console.log('error');
-			}
-		})
+		var gname = $(this).attr("gname");
+		if(confirm("是否要添加" +gname+ "至购物车？")) {
+			var gid = $(this).attr("gid");
+			console.log(gid);
+			$.ajax({
+				url : '../C/insertTrolley',
+				type : 'POST',
+				data : {
+					goodId : gid
+				},
+				dataType : 'json',
+				success : function(data) {
+					alert("添加成功，记得去购物车结账哦");
+				},
+				error : function() {
+					console.log('error');
+				}
+			})
+		}
 	});
 });
 </script>
@@ -71,7 +74,7 @@ $(function(){
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
-				<a class="btn btn-primary btnTrollery" gid="${good.id}" }>加入购物车</a>
+				<a class="btn btn-primary btnTrollery" gid="${good.id}" gname="${good.title}">加入购物车</a>
 			</div>
 		</div>
 	</div>

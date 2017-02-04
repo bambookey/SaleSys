@@ -45,7 +45,7 @@ public class ShoppingRecordController {
 	/**
 	 * 
 	 * @Title: shoppingRecord 
-	 * @Description: 消费记录页，跳转
+	 * @Description: 消费记录页，提取消费记录信息
 	 * @param @return    设定文件 
 	 * @return String    返回类型 
 	 * @throws
