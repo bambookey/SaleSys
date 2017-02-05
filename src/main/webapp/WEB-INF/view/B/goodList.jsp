@@ -34,7 +34,10 @@
 					<td><c:out value="${good.prize}"></c:out></td>
 					<td><c:out value="${good.soldCnt}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详细信息／修改</a>
-					<a class="btn btn-danger" href="">删除</a></td>
+						<c:if test="${good.soldCnt <= 0}">
+						   <a class="btn btn-danger" href="">删除</a>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
