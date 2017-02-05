@@ -11,6 +11,32 @@
 <script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
 	src="../resources/bootstrap/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+	$(".goodDelete").click(function(){
+		if(confirm("确定删除该项目？")) {
+			var goodId = $(this).attr("gid");
+			$.ajax({
+				url : '../B/deleteGood',
+				type : 'POST',
+				data : {
+					goodId : goodId
+				},
+				dataType : 'json',
+				success : function(data) {
+					var status = data.status;
+					if(status == 1) {
+						$("#good" + goodId).remove();
+					}
+				},
+				error : function() {
+					console.log('error');
+				}
+			})
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<%@include file="../Component/headerB.jsp"%>
@@ -27,7 +53,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${goodList}" var="good">
-				<tr>
+				<tr id="good${good.id}">
 					<td><img style="width:60px; height:60px;" alt="${good.title}" src="${good.imgPath}"></td>
 					<td><c:out value="${good.title}"></c:out></td>
 					<td><c:out value="${good.summary}"></c:out></td>
@@ -35,7 +61,7 @@
 					<td><c:out value="${good.soldCnt}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详细信息／修改</a>
 						<c:if test="${good.soldCnt <= 0}">
-						   <a class="btn btn-danger" href="">删除</a>
+						   <a class="btn btn-danger goodDelete" gid="${good.id}">删除</a>
 						</c:if>
 					</td>
 				</tr>

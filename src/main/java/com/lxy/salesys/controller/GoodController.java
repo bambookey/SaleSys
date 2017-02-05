@@ -240,4 +240,24 @@ public class GoodController {
 		ret.put("rowAffected", rowAffected);
 		return ret;
 	}
+	
+	/**
+	 * 
+	 * @Title: deleteGoodById 
+	 * @Description: 删除商品
+	 * @param @param request
+	 * @param @param response
+	 * @param @return    设定文件 
+	 * @return JSONObject    返回类型 
+	 * @throws
+	 */
+	@RequestMapping(value="/B/deleteGood", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject deleteGoodById(HttpServletRequest request, HttpServletResponse response) {
+		Integer goodId = Integer.parseInt(request.getParameter("goodId"));
+		JSONObject ret = new JSONObject();
+		int status = goodService.deleteGoodById(goodId);
+		ret.put("status", status);
+		return ret;
+	}
 }

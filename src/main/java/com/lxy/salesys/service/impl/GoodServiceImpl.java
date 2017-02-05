@@ -55,4 +55,8 @@ public class GoodServiceImpl implements IGoodService{
 		return ret;
 	}
 
+	public int deleteGoodById(Integer goodId) {
+		return goodDao.deleteGoodById(goodId);
+	}
+
 }

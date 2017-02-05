@@ -41,4 +41,8 @@
 		</trim>
 		WHERE Id=#{id}
 	</update>
+	<delete id="deleteGoodById">
+		DELETE FROM tb_good
+		WHERE Id=#{goodId}
+	</delete>
 </mapper>

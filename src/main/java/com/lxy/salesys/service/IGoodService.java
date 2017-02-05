@@ -70,4 +70,15 @@ public interface IGoodService {
 	 * @throws
 	 */
 	public int updateGoodById(Good good);
+	
+	/**
+	 * 
+	 * @Title: deleteGoodById 
+	 * @Description: 删除商品
+	 * @param @param goodId
+	 * @param @return    设定文件 
+	 * @return int    返回类型 
+	 * @throws
+	 */
+	public int deleteGoodById(Integer goodId);
 }
