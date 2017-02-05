@@ -2,6 +2,7 @@ package com.lxy.salesys.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Good;
+import com.lxy.salesys.pojo.ShoppingRecord;
 import com.lxy.salesys.service.IGoodService;
 import com.lxy.salesys.service.IShoppingRecordService;
 import com.lxy.salesys.vo.GoodVO;
@@ -139,21 +141,36 @@ public class GoodController {
 	 * @throws
 	 */
 	@RequestMapping("/C/goodList")
-	public ModelAndView goodListC() {
+	public ModelAndView goodListC(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList<Good> goodList = new ArrayList<Good>();
+		ArrayList<GoodVO> goodVOList = new ArrayList<GoodVO>();
+		HashSet<Integer> boughtGoodIds = new HashSet<Integer>();
+		Integer userId = null;
 		int status = 0;
 		try {
+			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 			goodList = goodService.selectAllGoods();
 		} catch (Exception e) {
 			logger.error("ERROR: GoodController->selectAllGoods->selectAllGoods");
 			e.printStackTrace();
 		}
-		
-		
+		ArrayList<ShoppingRecord> shoppingRecords = shoppingRecordService.selectShoppingRecordsByUserId(userId);
+		for(ShoppingRecord record : shoppingRecords) {
+			boughtGoodIds.add(record.getGoodId());
+		}
+		for(Good good : goodList) {
+			GoodVO goodVO = new GoodVO(good);
+			if(boughtGoodIds.contains(good.getId())) {
+				goodVO.setIsBought(true);
+			} else {
+				goodVO.setIsBought(false);
+			}
+			goodVOList.add(goodVO);
+		}
 		modelAndView.setViewName("C/goodList");
 		modelAndView.addObject("status", status);
-		modelAndView.addObject("goodList", goodList);
+		modelAndView.addObject("goodList", goodVOList);
 		return modelAndView;
 	}
 	

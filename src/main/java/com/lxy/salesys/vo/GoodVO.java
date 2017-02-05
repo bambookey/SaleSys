@@ -11,8 +11,19 @@ public class GoodVO {
 	private Double prize;
 	private Boolean isAvailable;
 	private Integer soldCnt;
-
+	private Boolean isBought;
+	
 	public GoodVO() {
+	}
+	
+	public GoodVO(Good good) {
+		this.id = good.getId();
+		this.title = good.getTitle();
+		this.summary = good.getSummary();
+		this.text = good.getText();
+		this.imgPath = good.getImgPath();
+		this.prize = good.getPrize();
+		this.isAvailable = good.getIsAvailable();
 	}
 	
 	public GoodVO(Good good, Integer soldCnt) {
@@ -98,5 +109,14 @@ public class GoodVO {
 	public void setSoldCnt(Integer soldCnt) {
 		this.soldCnt = soldCnt;
 	}
+
+	public Boolean getIsBought() {
+		return isBought;
+	}
+
+	public void setIsBought(Boolean isBought) {
+		this.isBought = isBought;
+	}
+	
 	
 }

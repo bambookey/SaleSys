@@ -52,7 +52,11 @@ $(function(){
 		<tbody>
 			<c:forEach items="${goodList}" var="good">
 				<tr>
-					<td><img style="width:60px; height:60px;" alt="${good.title}" src="${good.imgPath}"></td>
+					<td><img style="width:60px; height:60px;" alt="${good.title}" src="${good.imgPath}">
+						<c:if test="${good.isBought}">
+							[已购买]
+						</c:if>
+					</td>
 					<td><c:out value="${good.title}"></c:out></td>
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>
