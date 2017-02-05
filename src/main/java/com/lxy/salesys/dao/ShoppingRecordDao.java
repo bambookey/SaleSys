@@ -1,6 +1,8 @@
 package com.lxy.salesys.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +32,14 @@ public interface ShoppingRecordDao {
 	 * @throws
 	 */
 	public ArrayList<ShoppingRecord> selectShoppingRecordsByUserId(Integer userId);
+	
+	/**
+	 * 
+	 * @Title: selectShoppingGoodAmount 
+	 * @Description: 查询商品和售出量的kv对
+	 * @param @return    设定文件 
+	 * @return List<Map<Integer,Integer>>    返回类型 
+	 * @throws
+	 */
+	public List<Map<Integer, Integer>> selectShoppingGoodAmount();
 }

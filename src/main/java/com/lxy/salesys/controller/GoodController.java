@@ -1,6 +1,8 @@
 package com.lxy.salesys.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.lxy.salesys.pojo.Good;
 import com.lxy.salesys.service.IGoodService;
+import com.lxy.salesys.service.IShoppingRecordService;
+import com.lxy.salesys.vo.GoodVO;
 
 /**
  * 
@@ -34,6 +38,8 @@ public class GoodController {
 	@Autowired
 	IGoodService goodService;
 	
+	@Autowired
+	IShoppingRecordService shoppingRecordService;
 	/**
 	 * 
 	 * @Title: goodInsertB 
@@ -98,18 +104,29 @@ public class GoodController {
 	public ModelAndView goodListB() {
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList<Good> goodList = new ArrayList<Good>();
+		ArrayList<GoodVO> goodVOList = new ArrayList<GoodVO>();
+		Map<Integer, Integer> goodSoldCnt = new HashMap<Integer, Integer>();
 		int status = 0;
 		try {
 			goodList = goodService.selectAllGoods();
+			goodSoldCnt = shoppingRecordService.selectShoppingGoodAmountMap();
 		} catch (Exception e) {
 			logger.error("ERROR: GoodController->selectAllGoods->selectAllGoods");
 			e.printStackTrace();
 		}
 		
+		for(Good good : goodList) {
+			int soldCnt = 0;
+			if(goodSoldCnt.containsKey(good.getId())) {
+				soldCnt = goodSoldCnt.get(good.getId());
+			}
+			GoodVO goodVO = new GoodVO(good, soldCnt);
+			goodVOList.add(goodVO);
+		}
 		
 		modelAndView.setViewName("B/goodList");
 		modelAndView.addObject("status", status);
-		modelAndView.addObject("goodList", goodList);
+		modelAndView.addObject("goodList", goodVOList);
 		return modelAndView;
 	}
 	

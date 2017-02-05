@@ -9,6 +9,12 @@
 		<result property="totalMoney" column="TotalMoney" />
 		<result property="insertDatetime" column="InsertDatetime" />
 	</resultMap>
+	
+	<resultMap id="ShoppingRecordCnt" type="java.util.Map">
+        <result property="goodId" column="GoodId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result property="count" column="SUM(GoodAmount)" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+    </resultMap>
+	
 
 	<insert id="insertShoppingRecords" parameterType="com.lxy.salesys.pojo.ShoppingRecord">
 		INSERT INTO tb_shoppingRecord(Id, UserId, GoodId, GoodAmount, TotalMoney, InsertDatetime)
@@ -22,5 +28,10 @@
 		SELECT * FROM tb_shoppingRecord
 		WHERE UserId=#{userId}
 		ORDER BY InsertDatetime DESC
+	</select>
+	
+	<select id="selectShoppingGoodAmount" resultMap="ShoppingRecordCnt">
+		SELECT GoodId,SUM(GoodAmount) FROM tb_shoppingRecord
+		GROUP BY GoodId
 	</select>
 </mapper>

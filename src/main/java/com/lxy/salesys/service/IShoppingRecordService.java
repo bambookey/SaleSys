@@ -1,7 +1,8 @@
 package com.lxy.salesys.service;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Map;
 
 import com.lxy.salesys.pojo.ShoppingRecord;
 
@@ -28,4 +29,24 @@ public interface IShoppingRecordService {
 	 * @throws
 	 */
 	public ArrayList<ShoppingRecord> selectShoppingRecordsByUserId(Integer userId);
+	
+	/**
+	 * 
+	 * @Title: selectShoppingGoodAmount 
+	 * @Description: 查出商品id和售出量的kv LIST
+	 * @param @return    设定文件 
+	 * @return List<Map<Integer,Integer>>    返回类型 
+	 * @throws
+	 */
+	public List<Map<Integer, Integer>> selectShoppingGoodAmount();
+	
+	/**
+	 * 
+	 * @Title: selectShoppingGoodAmountMap 
+	 * @Description: 查出商品id和售出量的kv  k:goodId, v:soldCnt
+	 * @param @return    设定文件 
+	 * @return Map<Integer,Integer>    返回类型 
+	 * @throws
+	 */
+	public Map<Integer, Integer> selectShoppingGoodAmountMap();
 }

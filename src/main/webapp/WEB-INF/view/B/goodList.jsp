@@ -21,7 +21,7 @@
 				<th>名称</th>
 				<th>摘要</th>
 				<th>价格（元）</th>
-				<th>可用</th>
+				<th>已售出(件)</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -32,7 +32,7 @@
 					<td><c:out value="${good.title}"></c:out></td>
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>
-					<td><c:out value="${good.isAvailable}"></c:out></td>
+					<td><c:out value="${good.soldCnt}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详细信息／修改</a>
 					<a class="btn btn-danger" href="">删除</a></td>
 				</tr>

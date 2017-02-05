@@ -1,6 +1,9 @@
 package com.lxy.salesys.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +32,18 @@ public class ShoppingRecordServiceImpl implements IShoppingRecordService{
 
 	public ArrayList<ShoppingRecord> selectShoppingRecordsByUserId(Integer userId) {
 		return shoppingRecordDao.selectShoppingRecordsByUserId(userId);
+	}
+
+	public List<Map<Integer, Integer>> selectShoppingGoodAmount() {
+		return shoppingRecordDao.selectShoppingGoodAmount();
+	}
+
+	public Map<Integer, Integer> selectShoppingGoodAmountMap() {
+		List<Map<Integer, Integer>> amountList = shoppingRecordDao.selectShoppingGoodAmount();
+		Map<Integer, Integer> ret = new HashMap<Integer, Integer>();
+		for(Map<Integer, Integer> m : amountList) {
+			ret.put(m.get("goodId"), m.get("count"));
+		}
+		return ret;
 	}
 }
