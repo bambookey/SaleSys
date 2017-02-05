@@ -29,7 +29,6 @@ $(function () {
 			<ul class="nav navbar-nav faq-tabbable">
 				<li class="active"><a href="/SaleSys/B/goodList">货物清单</a></li>
 				<li><a href="/SaleSys/B/goodInsert">添加商品</a></li>
-				<li><a href="#">已售商品</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				

@@ -25,7 +25,8 @@ public class LoginController {
 	IUserService userService;
 	
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(request.getAttribute("msg"));
 		return "login";
 	}
 	
@@ -64,6 +65,7 @@ public class LoginController {
 			request.getSession().setAttribute("NickName", user.getNickName());
 			request.getSession().setAttribute("UserName", user.getUserName());
 			request.getSession().setAttribute("UserId", user.getId());
+			request.getSession().setAttribute("UserType", user.getUserType());
 		}
 		ret.put("status", status);
 		ret.put("userType", userType);
@@ -75,6 +77,7 @@ public class LoginController {
 		request.getSession().removeAttribute("NickName");
 		request.getSession().removeAttribute("UserName");
 		request.getSession().removeAttribute("UserId");
+		request.getSession().removeAttribute("UserType");
 		return "login";
 	}
 }
