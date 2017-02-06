@@ -13,26 +13,41 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		int userType = -1;
 		String requestURI = request.getRequestURI();
 		String uriType = "";
-		if(requestURI.split("/").length >= 2) {
-			uriType = requestURI.split("/")[2];
-		}
-		System.out.println(uriType);
-		//不需要验证的页面
-		if (requestURI.contains("resources") || 
-				requestURI.contains("login") || 
-				requestURI.contains("logout") || 
-				requestURI.contains("userLogin")) {
-	        return true;
-	    }
-		if(userId == null || userTypeStr == null) {
-			response.sendRedirect("/SaleSys/login");
-			return true;
-		}
 		try {
 			userType = Integer.parseInt(userTypeStr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if(requestURI.split("/").length >= 2) {
+			uriType = requestURI.split("/")[2];
+		}
+		
+		//不需要验证的页面
+		if (requestURI.contains("resources") || 
+				requestURI.contains("userLogin")) {
+	        return true;
+	    }
+		if(requestURI.contains("login") || 
+				requestURI.contains("logout")) {
+			if(userId == null || userTypeStr == null) {
+				return true;
+			} else {
+				if(userType == 1) {
+					response.sendRedirect("/SaleSys/C/goodList");
+					return true;
+				} else if(userType == 0) {
+					response.sendRedirect("/SaleSys/B/goodList");
+					return true;
+				}
+			}
+		}
+		
+		
+		if(userId == null || userTypeStr == null) {
+			response.sendRedirect("/SaleSys/login");
+			return true;
+		}
+		
 		if(userType == 1) { // buyer
 			if(uriType.equals("B")) {
 				response.sendRedirect("/SaleSys/C/goodList");
