@@ -26,7 +26,6 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(request.getAttribute("msg"));
 		return "login";
 	}
 	

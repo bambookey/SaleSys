@@ -16,8 +16,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if(requestURI.split("/").length >= 2) {
 			uriType = requestURI.split("/")[2];
 		}
+		System.out.println(uriType);
 		//不需要验证的页面
-		if (requestURI.contains("login") || requestURI.contains("logout") || requestURI.contains("userLogin")) {
+		if (requestURI.contains("resources") || 
+				requestURI.contains("login") || 
+				requestURI.contains("logout") || 
+				requestURI.contains("userLogin")) {
 	        return true;
 	    }
 		if(userId == null || userTypeStr == null) {
