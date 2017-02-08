@@ -46,7 +46,7 @@ $(function(){
 				<th>照片</th>
 				<th>名称</th>
 				<th>摘要</th>
-				<th>价格（元）</th>
+				<th>价格(元)</th>
 				<th>已售出(件)</th>
 				<th>操作</th>
 			</tr>

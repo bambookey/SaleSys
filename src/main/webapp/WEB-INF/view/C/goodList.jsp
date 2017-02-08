@@ -57,7 +57,7 @@ $(function(){
 							[已购买]
 						</c:if>
 					</td>
-					<td><c:out value="${good.title}"></c:out></td>
+					<td><a href="../C/goodDetail?id=${good.id}"><c:out value="${good.title}"></c:out></a></td>
 					<td><c:out value="${good.summary}"></c:out></td>
 					<td><c:out value="${good.prize}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详情</a>
