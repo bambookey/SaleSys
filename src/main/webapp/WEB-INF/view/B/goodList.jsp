@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GoodList</title>
 <link rel="stylesheet" type="text/css"
-	href="../resources/bootstrap/css/bootstrap.min.css">
-<script type="text/javascript" src="../resources/js/jquery-3.1.1.min.js"></script>
+	href="/SaleSys/resources/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="/SaleSys/resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript"
-	src="../resources/bootstrap/js/bootstrap.min.js"></script>
+	src="/SaleSys/resources/bootstrap/js/bootstrap.min.js"></script>
 <script>
 $(function(){
 	$(".goodDelete").click(function(){
