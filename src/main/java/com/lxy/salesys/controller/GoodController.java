@@ -1,5 +1,6 @@
 package com.lxy.salesys.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -75,8 +76,9 @@ public class GoodController {
 		String text = request.getParameter("text");
 		String img = request.getParameter("img");
 		Double prize = Double.parseDouble(request.getParameter("prize"));
+		Timestamp insertDatetime = new Timestamp(System.currentTimeMillis());
 		
-		Good good = new Good(title, summary, text, img, prize);
+		Good good = new Good(title, summary, text, img, prize, false, insertDatetime);
 		
 		int status = -1;
 		int rowAffected = -1;
@@ -238,10 +240,10 @@ public class GoodController {
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String text = request.getParameter("text");
-		String img = request.getParameter("img");
+		String imgPath = request.getParameter("img");
 		Double prize = Double.parseDouble(request.getParameter("prize"));
-		
-		Good good = new Good(id, title, summary, text, img, prize);
+		Timestamp updateDatetime = new Timestamp(System.currentTimeMillis());
+		Good good = new Good(id, title, summary, text, imgPath, prize, false, updateDatetime);
 		
 		int status = -1;
 		int rowAffected = -1;

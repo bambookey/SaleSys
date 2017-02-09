@@ -129,13 +129,6 @@ $(window).on('load', function() {
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">是否可用</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="firstname"
-					value="${good.isAvailable}">
-			</div>
-		</div>
-		<div class="form-group">
 			<label for="" class="col-sm-2 control-label"></label>
 			<div class="col-sm-10">
 				<input id="btnUpdate" type="button" class="btn btn-primary"

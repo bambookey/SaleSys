@@ -23,7 +23,6 @@ public class GoodVO {
 		this.text = good.getText();
 		this.imgPath = good.getImgPath();
 		this.prize = good.getPrize();
-		this.isAvailable = good.getIsAvailable();
 	}
 	
 	public GoodVO(Good good, Integer soldCnt) {
@@ -33,7 +32,6 @@ public class GoodVO {
 		this.text = good.getText();
 		this.imgPath = good.getImgPath();
 		this.prize = good.getPrize();
-		this.isAvailable = good.getIsAvailable();
 		this.soldCnt = soldCnt;
 	}
 	

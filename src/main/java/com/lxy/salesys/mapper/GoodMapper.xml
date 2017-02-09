@@ -8,19 +8,21 @@
 		<result property="text" column="Text" />
 		<result property="imgPath" column="ImgPath" />
 		<result property="prize" column="Prize" />
-		<result property="isAvailable" column="IsAvailable" />
+		<result property="isDeleted" column="IsDeleted" />
+		<result property="updateDatetime" column="UpdateDatetime" />
 	</resultMap>
 	<insert id="insertGood" parameterType="com.lxy.salesys.pojo.Good">
-		INSERT INTO tb_good(Id, Title, Summary, Text, ImgPath, Prize)
-		VALUES(#{id}, #{title}, #{summary}, #{text}, #{imgPath}, #{prize})
+		INSERT INTO tb_good(Id, Title, Summary, Text, ImgPath, Prize, IsDeleted, UpdateDatetime)
+		VALUES(#{id}, #{title}, #{summary}, #{text}, #{imgPath}, #{prize}, #{isDeleted}, #{updateDatetime})
 	</insert>
 	<select id="selectAllGoods" resultMap="Good">
 		SELECT * FROM tb_good
+		WHERE IsDeleted=0
 		ORDER BY Id DESC
 	</select>
 	<select id="selectGoodById" resultMap="Good">
 		SELECT * FROM tb_good
-		WHERE Id=#{id}
+		WHERE Id=#{id} AND IsDeleted=0
 	</select>
 	<select id="selectGoodsByIds" resultMap="Good">
 		SELECT * FROM tb_good
@@ -28,6 +30,7 @@
 	    <foreach collection="list" item="goodId" open="(" close=")" separator=",">
 	    	#{goodId}
 	    </foreach>
+	   	AND IsDeleted=0
 	</select>
 	<update id="updateGoodById" parameterType="com.lxy.salesys.pojo.Good">
 		UPDATE tb_good
@@ -37,12 +40,13 @@
 			<if test="text!=null">Text=#{text},</if>
 			<if test="imgPath!=null">ImgPath=#{imgPath},</if>
 			<if test="prize!=null">Prize=#{prize},</if>
-			<if test="isAvailable!=null">IsAvailable=#{isAvailable},</if>
+			<if test="updateDatetime!=null">UpdateDatetime=#{updateDatetime},</if>
 		</trim>
 		WHERE Id=#{id}
 	</update>
-	<delete id="deleteGoodById">
-		DELETE FROM tb_good
+	<update id="deleteGoodById">
+		UPDATE tb_good
+		SET IsDeleted=1
 		WHERE Id=#{goodId}
-	</delete>
+	</update>
 </mapper>

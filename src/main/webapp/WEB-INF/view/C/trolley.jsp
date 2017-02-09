@@ -89,7 +89,7 @@
 			console.log(goodCnts);
 			console.log(goodIds);
 			if(goodIds.length == 0) {
-				alert("壕先选定商品哦");
+				alert("请先选定商品");
 				return false;
 			}
 			$.ajax({
@@ -103,9 +103,9 @@
 				success : function(data) {
 					var status = data.status;
 					switch (status) {
-						case 0: alert("土豪继续剁手啊");break;
-						case 1: alert("想一想，不充钱你会变得更强吗？");break;
-						case 2: alert("赶快查bug");break;
+						case 0: alert("购买成功");break;
+						case 1: alert("余额不足");break;
+						case 2: alert("Error");break;
 					}
 				},
 				error : function() {

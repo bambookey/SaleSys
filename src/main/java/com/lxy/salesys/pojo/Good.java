@@ -1,5 +1,7 @@
 package com.lxy.salesys.pojo;
 
+import java.sql.Timestamp;
+
 public class Good {
 	private Integer id;
 	private String title;
@@ -7,26 +9,31 @@ public class Good {
 	private String text;
 	private String imgPath;
 	private Double prize;
-	private Boolean isAvailable;
+	private Boolean isDeleted;
+	private Timestamp updateDatetime;
 
 	public Good() {
 	}
 	
-	public Good(String title, String summary, String text, String imgPath, Double prize) {
+	public Good(String title, String summary, String text, String imgPath, Double prize, Boolean isDeleted, Timestamp updateDatetime) {
 		this.title = title;
 		this.summary = summary;
 		this.text = text;
 		this.imgPath = imgPath;
 		this.prize = prize;
+		this.isDeleted = isDeleted;
+		this.updateDatetime = updateDatetime;
 	}
 	
-	public Good(Integer id, String title, String summary, String text, String imgPath, Double prize) {
+	public Good(Integer id, String title, String summary, String text, String imgPath, Double prize, Boolean isDeleted, Timestamp updateDatetime) {
 		this.id = id;
 		this.title = title;
 		this.summary = summary;
 		this.text = text;
 		this.imgPath = imgPath;
 		this.prize = prize;
+		this.isDeleted = isDeleted;
+		this.updateDatetime = updateDatetime;
 	}
 
 	public Integer getId() {
@@ -77,11 +84,20 @@ public class Good {
 		this.prize = prize;
 	}
 
-	public Boolean getIsAvailable() {
-		return isAvailable;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsAvailable(Boolean isAvailable) {
-		this.isAvailable = isAvailable;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
+
+	public Timestamp getUpdateDatetime() {
+		return updateDatetime;
+	}
+
+	public void setUpdateDatetime(Timestamp updateDatetime) {
+		this.updateDatetime = updateDatetime;
+	}
+
 }
