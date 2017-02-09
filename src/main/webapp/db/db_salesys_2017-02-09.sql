@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.11)
 # Database: db_salesys
-# Generation Time: 2017-02-06 03:39:05 +0000
+# Generation Time: 2017-02-09 03:46:21 +0000
 # ************************************************************
 
 
@@ -32,19 +32,21 @@ CREATE TABLE `tb_good` (
   `Text` varchar(1500) DEFAULT NULL COMMENT '正文',
   `ImgPath` varchar(200) DEFAULT NULL COMMENT '图片路径',
   `Prize` decimal(10,2) DEFAULT NULL COMMENT '商品价格',
-  `IsAvailable` tinyint(1) DEFAULT NULL,
+  `IsDeleted` tinyint(1) DEFAULT NULL COMMENT '删除标记',
+  `UpdateDatetime` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `tb_good` WRITE;
 /*!40000 ALTER TABLE `tb_good` DISABLE KEYS */;
 
-INSERT INTO `tb_good` (`Id`, `Title`, `Summary`, `Text`, `ImgPath`, `Prize`, `IsAvailable`)
+INSERT INTO `tb_good` (`Id`, `Title`, `Summary`, `Text`, `ImgPath`, `Prize`, `IsDeleted`, `UpdateDatetime`)
 VALUES
-	(1,'wewr','werwe','rwer','../upload/QQ20170131-231050@2x.png',0.50,NULL),
-	(3,'wer','ewrw','rewrw','../upload/QQ20170131-231050@2x.png',33.00,NULL),
-	(5,'测试','测试','玩儿','../upload/QQ20170129-150101@2x.png',11.00,NULL),
-	(10,'无法','我认','情人','../upload/QQ20170129-150101@2x.png',2.00,NULL);
+	(1,'地精高爆炸药','地精高爆炸药','地精高爆炸药','../upload/QQ20170131-231050@2x.png',0.50,0,'2017-02-09 11:41:50'),
+	(3,'剥皮小刀','剥皮小刀','剥皮小刀','../upload/QQ20170131-231050@2x.png',33.00,0,'2017-02-09 11:41:50'),
+	(5,'南海小桶','南海小桶','南海小桶','../upload/QQ20170129-150101@2x.png',11.00,0,'2017-02-09 11:41:50'),
+	(10,'银鳞胸甲','银鳞胸甲','银鳞胸甲','../upload/QQ20170129-150101@2x.png',2.00,0,'2017-02-09 11:41:50'),
+	(12,'幸运兔脚','幸运兔脚','幸运兔脚','',6.00,0,'2017-02-09 11:41:50');
 
 /*!40000 ALTER TABLE `tb_good` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -70,13 +72,8 @@ LOCK TABLES `tb_shoppingRecord` WRITE;
 
 INSERT INTO `tb_shoppingRecord` (`Id`, `UserId`, `GoodId`, `GoodAmount`, `TotalMoney`, `InsertDatetime`)
 VALUES
-	(1,1,3,2,66.00,'2017-02-03 21:49:19'),
-	(2,1,3,2,66.00,'2017-02-03 21:49:41'),
-	(3,1,5,5,55.00,'2017-02-03 21:49:41'),
-	(4,1,3,2,66.00,'2017-02-03 21:50:00'),
-	(5,1,5,5,55.00,'2017-02-03 21:50:00'),
-	(6,1,3,1,33.00,'2017-02-03 22:19:53'),
-	(8,1,3,1,33.00,'2017-02-03 22:47:12');
+	(9,1,5,4,44.00,'2017-02-09 11:43:12'),
+	(10,1,12,2,12.00,'2017-02-09 11:43:12');
 
 /*!40000 ALTER TABLE `tb_shoppingRecord` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -101,22 +98,9 @@ LOCK TABLES `tb_trolley` WRITE;
 
 INSERT INTO `tb_trolley` (`Id`, `UserId`, `GoodId`, `Status`, `InsertDatetime`)
 VALUES
-	(4,1,3,0,'2017-01-29 13:18:26'),
-	(5,1,2,0,'2017-01-29 13:18:27'),
-	(6,1,1,0,'2017-01-29 13:18:28'),
-	(7,1,5,0,'2017-02-01 00:59:28'),
-	(8,2,5,0,'2017-02-01 01:56:56'),
-	(9,2,5,0,'2017-02-03 19:33:58'),
-	(10,2,4,0,'2017-02-03 19:34:00'),
-	(11,2,3,0,'2017-02-03 19:34:08'),
-	(12,2,2,0,'2017-02-03 19:34:18'),
-	(13,2,10,0,'2017-02-03 19:34:23'),
-	(14,2,10,0,'2017-02-03 19:34:27'),
-	(15,2,10,0,'2017-02-03 19:34:34'),
-	(16,2,11,0,'2017-02-04 21:44:29'),
-	(17,2,11,0,'2017-02-04 21:48:06'),
-	(18,2,4,0,'2017-02-04 22:52:31'),
-	(19,1,1,0,'2017-02-06 00:04:06');
+	(20,1,12,0,'2017-02-09 11:42:56'),
+	(21,1,5,0,'2017-02-09 11:42:59'),
+	(22,1,12,0,'2017-02-09 11:44:24');
 
 /*!40000 ALTER TABLE `tb_trolley` ENABLE KEYS */;
 UNLOCK TABLES;
