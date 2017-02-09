@@ -13,14 +13,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		int userType = -1;
 		String requestURI = request.getRequestURI();
 		String uriType = "";
-		try {
-			userType = Integer.parseInt(userTypeStr);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if(requestURI.split("/").length >= 2) {
-			uriType = requestURI.split("/")[2];
-		}
 		
 		//不需要验证的页面
 		if (requestURI.contains("resources") || 
@@ -42,10 +34,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 		
-		
 		if(userId == null || userTypeStr == null) {
 			response.sendRedirect("/SaleSys/login");
 			return true;
+		}
+		
+		try {
+			userType = Integer.parseInt(userTypeStr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(requestURI.split("/").length >= 2) {
+			uriType = requestURI.split("/")[2];
 		}
 		
 		if(userType == 1) { // buyer
