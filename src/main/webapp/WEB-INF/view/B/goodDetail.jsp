@@ -20,7 +20,6 @@ $(window).on('load', function() {
 		var text = $("#iptText").val();
 		var img = $("#iptImgPath").val();
 		var prize = $("#iptPrize").val();
-		console.log(id)
 		$.ajax({
 			url : '../B/updateGood',
 			type : 'POST',

@@ -83,7 +83,6 @@ public class TrolleyController {
 				goodIds.add(trolley.getGoodId());
 			}
 			trolleyGoods = goodService.selectGoodsByIds(goodIds);
-			System.out.println(trolleyGoods.size());
 		}
 		
 		modelAndView.setViewName("C/trolley");

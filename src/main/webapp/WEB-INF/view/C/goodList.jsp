@@ -17,7 +17,6 @@ $(function(){
 		var gname = $(this).attr("gname");
 		if(confirm("是否要添加" +gname+ "至购物车？")) {
 			var gid = $(this).attr("gid");
-			console.log(gid);
 			$.ajax({
 				url : '../C/insertTrolley',
 				type : 'POST',

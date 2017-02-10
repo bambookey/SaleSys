@@ -86,8 +86,8 @@
 		});
 
 		function submitTrolley() {
-			console.log(goodCnts);
-			console.log(goodIds);
+			/* console.log(goodCnts);
+			console.log(goodIds); */
 			if(goodIds.length == 0) {
 				alert("请先选定商品");
 				return false;

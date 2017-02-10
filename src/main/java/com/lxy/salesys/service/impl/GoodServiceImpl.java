@@ -14,7 +14,7 @@ import com.lxy.salesys.service.IGoodService;
 /**
  * 
  * @ClassName: GoodServiceImpl 
- * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @Description: 商品服务类
  * @author A18ccms a18ccms_gmail_com 
  * @date 2017年1月28日 下午9:26:34 
  *
@@ -26,7 +26,6 @@ public class GoodServiceImpl implements IGoodService{
 	GoodDao goodDao;
 	
 	public int insertGood(Good good) {
-		System.out.println(good.getTitle());
 		return goodDao.insertGood(good);
 	}
 

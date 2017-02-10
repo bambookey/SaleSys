@@ -37,7 +37,6 @@
 					if (status == 0) {
 						alert("添加商品成功");
 					}
-					console.log(data);
 				},
 				error : function() {
 					alert("添加商品失败，请注意格式");

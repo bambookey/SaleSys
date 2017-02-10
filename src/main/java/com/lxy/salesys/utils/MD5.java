@@ -27,7 +27,6 @@ public class MD5 {
 	// 返回形式只为数字
 	private static String byteToNum(byte bByte) {
 		int iRet = bByte;
-		System.out.println("iRet1=" + iRet);
 		if (iRet < 0) {
 			iRet += 256;
 		}
