@@ -148,10 +148,24 @@ public class GoodController {
 		ArrayList<Good> goodList = new ArrayList<Good>();
 		ArrayList<GoodVO> goodVOList = new ArrayList<GoodVO>();
 		HashSet<Integer> boughtGoodIds = new HashSet<Integer>();
-		Integer userId = null;
+		Boolean noPurchase = false;
+		Integer noPurchasePara = -1;
+		try {
+			if(request.getParameter("noPurchase") != null && !request.getParameter("noPurchase").equals("null")) {
+				noPurchasePara = Integer.parseInt(request.getParameter("noPurchase").trim());
+			}
+			if(noPurchasePara == 1) {
+				noPurchase = true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			logger.error("ERROR: GoodController->selectAllGoods->parseInt" + noPurchasePara);
+		}
+		
+		Integer userId = request.getSession().getAttribute("UserId") == null ?
+				null : Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 		int status = 0;
 		try {
-			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 			goodList = goodService.selectAllGoods();
 		} catch (Exception e) {
 			logger.error("ERROR: GoodController->selectAllGoods->selectAllGoods");
@@ -168,7 +182,15 @@ public class GoodController {
 			} else {
 				goodVO.setIsBought(false);
 			}
-			goodVOList.add(goodVO);
+			
+			if(noPurchase) {
+				if(!goodVO.getIsBought()) {
+					goodVOList.add(goodVO);
+				}
+			} else {
+				goodVOList.add(goodVO);
+			}
+			
 		}
 		modelAndView.setViewName("C/goodList");
 		modelAndView.addObject("status", status);

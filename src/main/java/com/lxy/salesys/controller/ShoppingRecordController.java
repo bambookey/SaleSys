@@ -122,7 +122,8 @@ public class ShoppingRecordController {
 		JSONObject ret = new JSONObject();
 		ArrayList<ShoppingRecord> shoppingRecords = new ArrayList<ShoppingRecord>();
 		HashMap<Integer, Good> goods = new HashMap<Integer, Good>();
-		Integer userId = null;
+		Integer userId = request.getSession().getAttribute("UserId") == null ?
+				null : Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 		String userName = null;
 		Timestamp insertDatetime = new Timestamp(System.currentTimeMillis());
 		/**
@@ -141,7 +142,6 @@ public class ShoppingRecordController {
 		}
 		
 		try {
-			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 			userName =  request.getSession().getAttribute("UserName").toString();
 			user = userService.getUserByUserName(userName);
 			userBalance = user.getBalance();

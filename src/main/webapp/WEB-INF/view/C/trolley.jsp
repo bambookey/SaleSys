@@ -107,6 +107,7 @@
 						case 1: alert("余额不足");break;
 						case 2: alert("Error");break;
 					}
+					window.location.reload();
 				},
 				error : function() {
 					console.log('error');
