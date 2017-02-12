@@ -81,28 +81,28 @@ $(window).on('load', function() {
 		<input type="hidden" id="iptId" value="${good.id}">
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品名称</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input type="text" class="form-control" id="iptTitle"
 					value="${good.title}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品摘要</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input type="text" class="form-control" id="iptSummary"
 					value="${good.summary}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">详细内容</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input type="text" class="form-control" id="iptText"
 					value="${good.text}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">展示图片</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<div id="picView">
 					<img style="width:200px; height:200px;" alt="${good.title}" src="${good.imgPath}">
 				</div>
@@ -114,7 +114,7 @@ $(window).on('load', function() {
 				<input type="text" class="form-control" id="firstname"
 					value="${good.imgPath}">
 			</div> --%>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input id="iptImgPath" type="hidden" value="${good.imgPath}">
 				<input id="iptImg" type="file" name="file" style="display: inline;">
 				<span id="fileUploadMsg" style="color:#F00;"></span>
@@ -122,14 +122,14 @@ $(window).on('load', function() {
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品价格</label>
-			<div class="col-sm-10">
+			<div class="col-sm-2">
 				<input type="text" class="form-control" id="iptPrize"
 					value="${good.prize}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label"></label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input id="btnUpdate" type="button" class="btn btn-primary"
 					value="更新">
 				<a class="btn btn-primary" href="/SaleSys/B/goodList">&lt&lt返回货物清单</a>

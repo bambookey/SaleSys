@@ -84,41 +84,40 @@
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品标题</label>
-			<div class="col-sm-10">
-				<input class="form-control" id="iptTitle" type="text" placeholder="">
+			<div class="col-sm-6">
+				<input class="form-control" id="iptTitle" type="text">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品摘要</label>
-			<div class="col-sm-10">
-				<input class="form-control" id="iptSummary" type="text"
-					placeholder="">
+			<div class="col-sm-6">
+				<input class="form-control" id="iptSummary" type="text">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">介绍正文</label>
-			<div class="col-sm-10">
-				<input class="form-control" id="iptText" type="text" placeholder="">
+			<div class="col-sm-6">
+				<input class="form-control" id="iptText" type="text">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">上传图片</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
+				<span id="picView"></span>
 				<input id="iptImgPath" type="hidden">
 				<input id="iptImg" type="file" name="file" style="display: inline;">
 				<span id="fileUploadMsg" style="color:#F00;"></span>
-				<span id="picView"></span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品价格</label>
-			<div class="col-sm-10">
-				<input class="form-control" id="iptPrize" type="text" placeholder="">
+			<div class="col-sm-2">
+				<input class="form-control" id="iptPrize" type="text">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label"></label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<input id="btnInsert" type="button" class="btn btn-primary"
 					value="添加商品">
 				<div id="result"></div>

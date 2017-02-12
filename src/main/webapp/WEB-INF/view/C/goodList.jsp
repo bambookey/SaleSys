@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,7 +46,6 @@
 
 		
 		var unPurchased = parseInt(getQueryVariable("noPurchase"));
-		console.log(unPurchased)
 		if(unPurchased == 1) {
 			$("#btnShowAll").show();
 		} else {
@@ -80,7 +80,16 @@
 						</c:if></td>
 					<td><a href="../C/goodDetail?id=${good.id}"><c:out
 								value="${good.title}"></c:out></a></td>
-					<td><c:out value="${good.summary}"></c:out></td>
+					<td>
+						<span title="${good.summary}">
+							<c:if test="${fn:length(good.summary)>10}">  
+				                    ${fn:substring(good.summary,0,10)}...  
+				            </c:if>  
+				            <c:if test="${fn:length(good.summary)<=10}">  
+				                ${good.summary}  
+				            </c:if>
+				    	</span>
+					</td>
 					<td><c:out value="${good.prize}"></c:out></td>
 					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详情</a>
 						<a class="btn btn-primary btnTrollery" gid="${good.id}"

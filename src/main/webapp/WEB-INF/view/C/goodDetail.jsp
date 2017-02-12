@@ -45,7 +45,7 @@ $(function(){
 	<%@include file="../Component/headerC.jsp"%>
 	<div class="form-horizontal">
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">展示图片</label>
+			<label for="" class="col-sm-2 control-label">商品图片</label>
 			<div class="col-sm-10">
 				<div id="picView">
 					<img style="width:200px; height:200px;" alt="${good.title}" src="${good.imgPath}">
@@ -55,25 +55,25 @@ $(function(){
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品名称</label>
 			<div class="col-sm-10">
-				<span>${good.title}</span>
+				<p class="form-control-static">${good.title}</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品单价</label>
 			<div class="col-sm-10">
-				<span>${good.prize}</span>
+				<p class="form-control-static">${good.prize}</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品摘要</label>
 			<div class="col-sm-10">
-			<span>${good.summary}</span>
+				<p class="form-control-static">${good.summary}</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">详细内容</label>
 			<div class="col-sm-10">
-			<span>${good.text}</span>
+				<p class="form-control-static">${good.text}</p>
 			</div>
 		</div>
 		<div class="form-group">
