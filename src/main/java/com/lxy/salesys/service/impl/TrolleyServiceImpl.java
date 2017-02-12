@@ -30,4 +30,8 @@ public class TrolleyServiceImpl implements ITrolleyService{
 	public ArrayList<Trolley> getTrolleysByUserId(int id) {
 		return trolleyDao.getTrolleysByUserId(id);
 	}
+
+	public int checkTrolley(Trolley trolley) {
+		return trolleyDao.checkTrolley(trolley);
+	}
 }

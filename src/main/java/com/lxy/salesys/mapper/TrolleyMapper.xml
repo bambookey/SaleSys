@@ -13,8 +13,14 @@
 		SELECT * FROM tb_trolley 
 		WHERE UserId=#{userId} AND Status=0
 	</select>
+	
 	<insert id="insertTrolley" parameterType="com.lxy.salesys.pojo.Trolley">
 		INSERT INTO tb_trolley(Id, UserId, GoodId, Status, InsertDatetime)
 		VALUES(#{id}, #{userId}, #{goodId}, #{status}, #{insertDatetime})
 	</insert>
+	
+	<select id="checkTrolley" resultType="java.lang.Integer" parameterType="com.lxy.salesys.pojo.Trolley">
+		SELECT COUNT(Id) FROM tb_trolley
+		WHERE UserId=#{userId} AND GoodId=#{goodId}
+	</select>
 </mapper>

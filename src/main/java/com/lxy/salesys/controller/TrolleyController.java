@@ -36,7 +36,6 @@ public class TrolleyController {
 	@ResponseBody
 	public JSONObject insertTrolley(HttpServletRequest request, HttpServletResponse response) {
 		JSONObject ret = new JSONObject();
-		
 		Integer userId = null;
 		Integer goodId = null;
 		try {
@@ -48,7 +47,20 @@ public class TrolleyController {
 		}
 		
 		Trolley trolley = new Trolley(userId, goodId, 0, new Timestamp(System.currentTimeMillis()));
-		trolleyService.insertTrolley(trolley);
+		int trolleyExistCnt = trolleyService.checkTrolley(trolley);
+		
+		if(trolleyExistCnt == 0) {
+			try {
+				trolleyService.insertTrolley(trolley);
+				ret.put("status", 0);
+			} catch (Exception e) {
+				logger.error("ERROR: TrolleyController->insertTrolley->insertTrolley");
+				ret.put("status", 500);
+				e.printStackTrace();
+			}
+		} else {
+			ret.put("status", 1);
+		}
 		return ret;
 	}
 	

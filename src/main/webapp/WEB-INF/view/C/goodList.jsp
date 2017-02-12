@@ -25,7 +25,13 @@ $(function(){
 				},
 				dataType : 'json',
 				success : function(data) {
-					alert("添加成功，记得去购物车结账哦");
+					var status = data.status;
+					switch(status) {
+					case 0:alert("添加成功，记得去购物车结账");break;
+					case 1:alert("已经添加，记得去购物车结账");break;
+					case 500:alert("系统故障，请稍后重试");break;
+					default:alert("未知状态");break;
+					}
 				},
 				error : function() {
 					console.log('error');

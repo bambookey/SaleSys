@@ -30,4 +30,14 @@ public interface TrolleyDao {
 	 * @throws
 	 */
 	public ArrayList<Trolley> getTrolleysByUserId(int id);
+	/**
+	 * 
+	 * @Title: checkTrolley 
+	 * @Description: 检查购物车是否有重复
+	 * @param @param trolley
+	 * @param @return    设定文件 
+	 * @return int    返回类型 
+	 * @throws
+	 */
+	public int checkTrolley(Trolley trolley);
 }

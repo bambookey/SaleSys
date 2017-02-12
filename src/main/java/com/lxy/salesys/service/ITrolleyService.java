@@ -27,4 +27,14 @@ public interface ITrolleyService {
 	 * @throws
 	 */
 	public ArrayList<Trolley> getTrolleysByUserId(int id);
+	/**
+	 * 
+	 * @Title: checkTrolley 
+	 * @Description: 查看trolley是否有重复，返回符合重复要求的行数
+	 * @param @param trolley
+	 * @param @return    设定文件 
+	 * @return int    返回类型 
+	 * @throws
+	 */
+	public int checkTrolley(Trolley trolley);
 }
