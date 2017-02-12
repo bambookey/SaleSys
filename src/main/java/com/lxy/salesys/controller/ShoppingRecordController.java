@@ -59,14 +59,13 @@ public class ShoppingRecordController {
 		ArrayList<ShoppingRecord> shoppingRecordList = new ArrayList<ShoppingRecord>();
 		ArrayList<Integer> goodIds = new ArrayList<Integer>();
 		HashMap<Integer, Good> goods = new HashMap<Integer, Good>();
-		Integer userId = null;
+		Integer userId = request.getSession().getAttribute("UserId") == null ?
+				null : Integer.parseInt(request.getSession().getAttribute("UserId").toString());
 		Double totalMoney = 0.0;
 		
-		try {
-			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
-		} catch (Exception e) {
-			logger.error("ERROR: ShoppingRecordController->shoppingRecord->parseInt");
-			e.printStackTrace();
+		if(userId == null) {
+			modelAndView.setViewName("login");
+			return modelAndView;
 		}
 		
 		shoppingRecordList = shoppingRecordService.selectShoppingRecordsByUserId(userId);

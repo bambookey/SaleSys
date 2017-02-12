@@ -66,12 +66,12 @@ public class TrolleyController {
 	public ModelAndView trolley(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		Integer userId = null;
-		try {
-			userId =  Integer.parseInt(request.getSession().getAttribute("UserId").toString());
-		} catch (Exception e) {
-			logger.error("ERROR: TrolleyController->trolley->parseInt");
-			e.printStackTrace();
+		Integer userId = request.getSession().getAttribute("UserId") == null ?
+				null : Integer.parseInt(request.getSession().getAttribute("UserId").toString());
+		
+		if(userId == null) {
+			modelAndView.setViewName("login");
+			return modelAndView;
 		}
 		
 		ArrayList<Trolley> trolleys = trolleyService.getTrolleysByUserId(userId);
