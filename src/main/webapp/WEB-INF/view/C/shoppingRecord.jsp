@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ShoppingRecords</title>
+<title>消费记录</title>
 <link rel="stylesheet" type="text/css"
 	href="/SaleSys/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="/SaleSys/resources/js/jquery-3.1.1.min.js"></script>
