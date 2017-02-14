@@ -152,6 +152,6 @@ $(window).on('load', function() {
 			</div>
 		</div>
 	</form>
-	
+	<%@include file="../Component/footer.jsp"%>
 </body>
 </html>

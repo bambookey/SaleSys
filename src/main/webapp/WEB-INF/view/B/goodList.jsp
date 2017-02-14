@@ -69,7 +69,7 @@ $(function(){
 					</td>
 					<td><c:out value="${good.prize}"></c:out></td>
 					<td><c:out value="${good.soldCnt}"></c:out></td>
-					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详细信息／修改</a>
+					<td><a class="btn btn-primary" href="goodDetail?id=${good.id}">详情／修改</a>
 						<c:if test="${good.soldCnt <= 0}">
 						   <a class="btn btn-danger goodDelete" gid="${good.id}">删除</a>
 						</c:if>
