@@ -60,8 +60,8 @@ $(function(){
 		</div>
 		<div class="form-group">
 			<label for="" class="col-sm-2 control-label">商品单价</label>
-			<div class="col-sm-10">
-				<p class="form-control-static">${good.prize}</p>
+			<div class="col-sm-2">
+				<p class="form-control-static">${good.prize} 元</p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -83,6 +83,6 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	
+	<%@include file="../Component/footer.jsp"%>
 </body>
 </html>

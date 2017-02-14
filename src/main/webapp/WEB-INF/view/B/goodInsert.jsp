@@ -10,11 +10,20 @@
 
 <script type="text/javascript" src="/SaleSys/resources/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="/SaleSys/resources/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/SaleSys/resources/js/validator.js"></script>
 <script type="text/javascript"
 	src="/SaleSys/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(window).on('load', function() {
-		$("#btnInsert").click(function() {
+		$("#goodInsertForm").validator().on("submit", function (e) {
+			if (!e.isDefaultPrevented()) {
+				goodInsert();
+			}
+			e.preventDefault();
+			return false;
+		});
+		
+		function goodInsert() {
 			var title = $("#iptTitle").val();
 			var summary = $("#iptSummary").val();
 			var text = $("#iptText").val();
@@ -43,7 +52,7 @@
 					console.log('error');
 				}
 			})
-		});
+		}
 
 		$("#iptImg").change(function() {
 			ajaxFileUpload();
@@ -81,23 +90,29 @@
 </head>
 <body>
 	<%@include file="../Component/headerB.jsp"%>
-	<form class="form-horizontal" role="form">
+	<form id="goodInsertForm" class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品标题</label>
 			<div class="col-sm-6">
-				<input class="form-control" id="iptTitle" type="text">
+				<input class="form-control" id="iptTitle" type="text" placeholder="2-80字符" 
+				data-minlength="2" data-maxlength="80" data-error="标题长度为2-80个字符。" required>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品摘要</label>
 			<div class="col-sm-6">
-				<input class="form-control" id="iptSummary" type="text">
+				<input class="form-control" id="iptSummary" type="text" placeholder="2-140字符" 
+				data-minlength="2" data-maxlength="140" data-error="摘要长度为2-140个字符。" required>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">介绍正文</label>
 			<div class="col-sm-6">
-				<input class="form-control" id="iptText" type="text">
+				<textarea class="form-control" rows="5" id="iptText" placeholder="2-1000字符"
+				 data-minlength="2" data-maxlength="140" data-error="正文长度为2-1000个字符。" required></textarea>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
 		<div class="form-group">
@@ -105,24 +120,28 @@
 			<div class="col-sm-6">
 				<span id="picView"></span>
 				<input id="iptImgPath" type="hidden">
-				<input id="iptImg" type="file" name="file" style="display: inline;">
+				<input id="iptImg" type="file" name="file" style="display: inline;" data-error="请上传商品图片。"  required>
 				<span id="fileUploadMsg" style="color:#F00;"></span>
+				<div class="help-block with-errors"></div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">商品价格</label>
 			<div class="col-sm-2">
-				<input class="form-control" id="iptPrize" type="text">
+				<input class="form-control" id="iptPrize" type="number" min="0" step="0.01" required>
+				<div class="help-block with-errors"></div>
 			</div>
+			<p class="form-control-static">元</p>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-6">
-				<input id="btnInsert" type="button" class="btn btn-primary"
+				<input id="btnInsert" type="submit" class="btn btn-primary"
 					value="添加商品">
 				<div id="result"></div>
 			</div>
 		</div>
 	</form>
+	<%@include file="../Component/footer.jsp"%>
 </body>
 </html>

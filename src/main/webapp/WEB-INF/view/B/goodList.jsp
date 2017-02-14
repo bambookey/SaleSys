@@ -78,5 +78,6 @@ $(function(){
 			</c:forEach>
 		</tbody>
 	</table>
+	<%@include file="../Component/footer.jsp"%>
 </body>
 </html>
